@@ -3,171 +3,259 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pagamento via PIX — Finalizar pedido</title>
+  <title>FlashFish E200 — Gerador Solar Portátil 200W</title>
+  <meta name="description" content="FlashFish E200 — Gerador Elétrico Portátil 200W. Compra rápida com PIX." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f5f7f8;
-      --card:#fff;
-      --accent:#0069ff;
-      --text:#111;
-      --muted:#6b7280;
-    }
-    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); margin:0; color:var(--text);}
-    .container{max-width:980px;margin:48px auto;padding:24px;}
-    .card{background:var(--card);border-radius:12px;box-shadow:0 6px 20px rgba(20,25,30,0.06);padding:28px;}
-    h1{margin:0 0 12px;font-size:22px;}
-    p.lead{margin:0 0 18px;color:var(--muted);}
-    .summary{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:22px;}
-    .product{flex:1;min-width:220px}
-    .price{font-weight:700;font-size:20px;}
-    .cta-wrap{text-align:center;margin-top:8px;}
-    .btn{
-      background:var(--accent);
-      color:white;
-      border:none;
-      padding:14px 22px;
-      border-radius:10px;
-      font-size:16px;
-      cursor:pointer;
-      box-shadow:0 6px 18px rgba(6,40,120,0.12);
-    }
-    .btn:active{transform:translateY(1px)}
-    /* Modal */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:50;}
-    .modal{background:var(--card);border-radius:12px;padding:20px;max-width:420px;width:94%;box-shadow:0 20px 40px rgba(10,15,30,0.2);text-align:center;}
-    .modal h2{margin:0 0 12px;font-size:18px;}
-    .qr{margin:12px 0;}
-    .small{font-size:13px;color:var(--muted);word-break:break-all;}
-    .actions{display:flex;gap:8px;justify-content:center;margin-top:14px;}
-    .btn-ghost{background:transparent;border:1px solid #e6e9ef;padding:10px 12px;border-radius:8px;cursor:pointer;}
-    .link-inline{display:inline-block;margin-top:10px;color:var(--accent);text-decoration:none;}
-    @media (min-width:720px){
-      .summary{gap:32px;}
-    }
+    :root{--bg:#0b0f14;--card:#0f1620;--muted:#9aa6b2;--accent:#ff7a18;--accent-2:#60a5fa;--glass:rgba(255,255,255,0.03);--max-w:980px;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color-scheme:dark}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#06101a 80%);color:#e9f2f8;-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--max-w);margin:28px auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .mark{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb572);display:flex;align-items:center;justify-content:center;font-weight:800;color:#081018}
+    h1{margin:8px 0;font-size:28px}
+    p.lead{color:var(--muted);margin:0}
+
+    .product{display:grid;grid-template-columns:460px 1fr;gap:28px;margin-top:22px}
+    .gallery{background:var(--card);padding:18px;border-radius:14px}
+    .gallery-main{width:100%;height:340px;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#071019}
+    .gallery-main img{max-width:100%;max-height:100%;object-fit:contain}
+    .thumbs{display:flex;gap:10px;margin-top:12px}
+    .thumbs img{width:76px;height:56px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0.95;border:2px solid transparent}
+    .thumbs img.active{border-color:var(--accent);opacity:1}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px}
+    .price{font-size:28px;font-weight:800;color:var(--accent);}
+    .specs{color:var(--muted);margin-top:8px}
+    .btn{cursor:pointer;border:0;padding:12px 18px;border-radius:10px;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffb572);color:#081018}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+    .features{display:flex;gap:12px;margin-top:16px}
+    .feature{flex:1;padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);text-align:center}
+
+    footer{margin-top:28px;color:var(--muted);font-size:13px}
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,12,0.6);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal{width:720px;max-width:94%;background:linear-gradient(180deg,#071018,#07131a);border-radius:12px;padding:18px;box-shadow:0 12px 40px rgba(2,6,23,0.8);}
+    .modal h3{margin:0 0 8px}
+    .form-row{display:flex;gap:10px}
+    .form-row .col{flex:1}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    label{font-size:13px;color:var(--muted)}
+
+    .pay-section{display:none;margin-top:12px}
+    .pix-code{font-family:monospace;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;word-break:break-all}
+
+    @media (max-width:880px){.product{grid-template-columns:1fr;}.gallery-main{height:300px}}
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>Resumo do pedido</h1>
-      <p class="lead">Revise seu pagamento. Clique em <strong>Finalizar pedido</strong> para ver o QR code PIX e copiar a payload.</p>
-
-      <div class="summary" aria-hidden="false">
-        <div class="product">
-          <div style="font-weight:600">Gerador Solar Portátil 200W</div>
-          <div class="small">Quantidade: 1</div>
-        </div>
+    <header>
+      <div class="logo">
+        <div class="mark">FF</div>
         <div>
-          <div class="price">R$420,00</div>
+          <div style="font-weight:800">FlashFish Store</div>
+          <div class="muted">Produto oficial • Entrega rápida</div>
+        </div>
+      </div>
+      <div>
+        <div style="text-align:right">
+          <div style="font-weight:700">FlashFish E200</div>
+          <div class="muted">Gerador Solar Portátil 200W</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="product">
+      <div class="gallery card">
+        <div class="gallery-main" id="mainImage">
+          <img src="DATA_IMG_1" id="mainImg" alt="FlashFish E200">
+        </div>
+        <div class="thumbs" id="thumbs">
+          <img src="DATA_IMG_1" class="active" data-src="DATA_IMG_1">
+          <img src="DATA_IMG_2" data-src="DATA_IMG_2">
+          <img src="DATA_IMG_3" data-src="DATA_IMG_3">
+          <img src="DATA_IMG_4" data-src="DATA_IMG_4">
         </div>
       </div>
 
-      <!-- ÚNICA chamada para ação visível -->
-      <div class="cta-wrap">
-        <button id="finalizarBtn" class="btn" aria-controls="pixModal">Finalizar pedido</button>
+      <div>
+        <div class="card">
+          <h1>FlashFish E200 — Gerador Elétrico Portátil</h1>
+          <p class="lead">Potência nominal <strong>200W</strong> • Capacidade <strong>151Wh</strong></p>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px">
+            <div>
+              <div class="price">R$ 420,00</div>
+              <div class="specs">Pagamento via PIX — envio em até 3 dias úteis</div>
+            </div>
+            <div style="text-align:right">
+              <button class="btn primary" id="openCheckout">Finalizar Compra</button>
+            </div>
+          </div>
+
+          <div class="features">
+            <div class="feature">
+              <div style="font-weight:800">Compacto</div>
+              <div class="muted">Fácil de transportar</div>
+            </div>
+            <div class="feature">
+              <div style="font-weight:800">3 maneiras de carregar</div>
+              <div class="muted">Rede, painel solar, carro</div>
+            </div>
+            <div class="feature">
+              <div style="font-weight:800">Garantia</div>
+              <div class="muted">12 meses</div>
+            </div>
+          </div>
+
+          <section style="margin-top:16px">
+            <h3>Descrição</h3>
+            <p class="muted">Unidade única: FlashFish E200, gerador portátil com saídas USB, DC e saída CA 110V. Ideal para viagens, emergência e uso doméstico leve.</p>
+          </section>
+        </div>
+
+        <div style="margin-top:14px" class="card">
+          <h3>Detalhes do pedido</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div>
+              <div style="font-weight:800">FlashFish E200</div>
+              <div class="muted">Quantidade: 1</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:800">R$ 420,00</div>
+              <div class="muted">Total</div>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="muted">© <span id="year"></span> FlashFish Store — Pagamento seguro via PIX</div>
+        <div class="muted">Envio para todo o Brasil</div>
+      </div>
+    </footer>
   </div>
 
-  <!-- Modal que aparece ao clicar no botão -->
-  <div id="pixModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document">
-      <h2>Pagamento via PIX</h2>
-      <p class="small">Escaneie o QR code com sua aplicação/banco ou copie a payload abaixo.</p>
-
-      <div class="qr">
-        <img id="qrImg" alt="QR code PIX" src="" width="300" height="300" style="max-width:100%;border-radius:8px;" />
+  <!-- Modal / Checkout -->
+  <div class="modal-backdrop" id="backdrop">
+    <div class="modal card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h3>Finalizar Compra</h3>
+        <button class="btn ghost" id="closeModal">Fechar</button>
       </div>
 
-      <div class="small" id="payloadText" style="text-align:center;margin-top:8px;"></div>
+      <div id="checkoutForm" style="margin-top:12px">
+        <p class="muted">Preencha os dados de entrega para gerar o pagamento via PIX.</p>
+        <div style="margin-top:12px">
+          <div class="form-row">
+            <div class="col">
+              <label>Nome completo</label>
+              <input id="buyerName" required placeholder="Seu nome completo">
+            </div>
+            <div class="col">
+              <label>Telefone (WhatsApp)</label>
+              <input id="buyerPhone" required placeholder="(11) 9xxxx-xxxx">
+            </div>
+          </div>
 
-      <div class="actions">
-        <button id="copyBtn" class="btn-ghost" title="Copiar payload para área de transferência">Copiar payload</button>
-        <button id="openTxtBtn" class="btn-ghost" title="Abrir payload em nova aba">Abrir em nova aba</button>
+          <div style="margin-top:10px">
+            <label>Endereço (Rua, número, complemento)</label>
+            <input id="buyerAddress" required placeholder="Av. Exemplo, 123, Apto 45">
+          </div>
+
+          <div style="margin-top:10px">
+            <label>CEP</label>
+            <input id="buyerCep" required placeholder="00000-000">
+          </div>
+
+          <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:10px">
+            <button class="btn ghost" id="cancelCheckout">Cancelar</button>
+            <button class="btn primary" id="submitCheckout">Gerar Pagamento (PIX)</button>
+          </div>
+        </div>
       </div>
 
-      <a id="directQrLink" class="link-inline" href="#" target="_blank" rel="noopener">Abrir imagem QR em nova aba</a>
-      <div style="margin-top:12px">
-        <button id="closeModal" class="btn-ghost" style="margin-top:8px">Fechar</button>
+      <div id="paymentSection" class="pay-section" style="margin-top:14px">
+        <h4>Pagamento via PIX</h4>
+        <p class="muted">Copie o código PIX abaixo ou abra o QR Code no celular para pagar.</p>
+        <div style="margin-top:10px">
+          <div class="pix-code" id="pixCode">PIX_CODE_PLACEHOLDER</div>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">
+          <button class="btn ghost" id="copyPix">Copiar código</button>
+          <button class="btn primary" id="openQr">Abrir QR (Pagar)</button>
+        </div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">Após confirmar o pagamento, envie o comprovante para nosso WhatsApp para confirmar o envio.</div>
       </div>
+
     </div>
   </div>
 
   <script>
-    // *** A sua payload PIX fornecida (não modifique aqui, salvo se quiser alterar) ***
-    const pixPayload = "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
-
-    // Elementos
-    const finalizarBtn = document.getElementById('finalizarBtn');
-    const modal = document.getElementById('pixModal');
-    const qrImg = document.getElementById('qrImg');
-    const payloadText = document.getElementById('payloadText');
-    const copyBtn = document.getElementById('copyBtn');
-    const openTxtBtn = document.getElementById('openTxtBtn');
-    const directQrLink = document.getElementById('directQrLink');
-    const closeModal = document.getElementById('closeModal');
-
-    // Gera URL do QR via Google Chart API (gera imagem PNG com o texto codificado)
-    function geraQrUrl(payload){
-      const base = "https://chart.googleapis.com/chart";
-      const params = new URLSearchParams({
-        chs: "300x300",
-        cht: "qr",
-        chl: payload
-      });
-      return base + "?" + params.toString();
-    }
-
-    // Exibir modal com QR e payload
-    function abrirModal(){
-      // Monta URL do QR (usamos encodeURIComponent no momento do uso)
-      const qrUrl = geraQrUrl(pixPayload);
-      qrImg.src = qrUrl;
-      directQrLink.href = qrUrl;
-      payloadText.textContent = pixPayload;
-
-      modal.style.display = "flex";
-      modal.setAttribute('aria-hidden','false');
-    }
-
-    function fecharModal(){
-      modal.style.display = "none";
-      modal.setAttribute('aria-hidden','true');
-    }
-
-    // Copy to clipboard
-    async function copiarPayload(){
-      try {
-        await navigator.clipboard.writeText(pixPayload);
-        copyBtn.textContent = "Copiado!";
-        setTimeout(()=> copyBtn.textContent = "Copiar payload", 1600);
-      } catch (e){
-        // fallback: selecionar e instruir usuário
-        alert("Não foi possível copiar automaticamente. Selecione e copie manualmente:\n\n" + pixPayload);
-      }
-    }
-
-    // Abre payload em nova aba como texto (data URI)
-    function abrirEmNovaAba(){
-      const dataUrl = "data:text/plain;charset=utf-8," + encodeURIComponent(pixPayload);
-      window.open(dataUrl, "_blank");
-    }
-
-    // Event listeners
-    finalizarBtn.addEventListener('click', abrirModal);
-    closeModal.addEventListener('click', fecharModal);
-    copyBtn.addEventListener('click', copiarPayload);
-    openTxtBtn.addEventListener('click', abrirEmNovaAba);
-
-    // Fechar modal ao clicar fora
-    modal.addEventListener('click', function(e){
-      if(e.target === modal) fecharModal();
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Images (base64 placeholders replaced server side)
+    const imgs = {
+      i1: 'DATA_IMG_1',
+      i2: 'DATA_IMG_2',
+      i3: 'DATA_IMG_3',
+      i4: 'DATA_IMG_4'
+    };
+    // Thumb click
+    document.querySelectorAll('#thumbs img').forEach(img=>{
+      img.addEventListener('click', e=>{
+        document.querySelectorAll('#thumbs img').forEach(t=>t.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        document.getElementById('mainImg').src = e.currentTarget.dataset.src;
+      })
     });
 
-    // Fechar com ESC
-    window.addEventListener('keydown', function(e){
-      if(e.key === "Escape") fecharModal();
+    // Modal flow
+    const backdrop = document.getElementById('backdrop');
+    document.getElementById('openCheckout').addEventListener('click', ()=>backdrop.style.display='flex');
+    document.getElementById('closeModal').addEventListener('click', ()=>backdrop.style.display='none');
+    document.getElementById('cancelCheckout').addEventListener('click', ()=>backdrop.style.display='none');
+
+    const PIX_CODE = `00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE`;
+    // set placeholder
+    document.getElementById('pixCode').textContent = PIX_CODE;
+
+    document.getElementById('submitCheckout').addEventListener('click', ()=>{
+      const name = document.getElementById('buyerName').value.trim();
+      const phone = document.getElementById('buyerPhone').value.trim();
+      const addr = document.getElementById('buyerAddress').value.trim();
+      const cep = document.getElementById('buyerCep').value.trim();
+      if(!name||!phone||!addr||!cep){alert('Por favor, preencha todos os campos de entrega.');return}
+      // Normally here you'd send order to server or save it. We'll show PIX section.
+      document.getElementById('checkoutForm').style.display='none';
+      document.getElementById('paymentSection').style.display='block';
+      // Optionally store order in localStorage
+      const order = {product:'FlashFish E200',price:420,name,phone,addr,cep,ts:new Date().toISOString()};
+      localStorage.setItem('lastOrder', JSON.stringify(order));
     });
+
+    // copy
+    document.getElementById('copyPix').addEventListener('click', ()=>{
+      navigator.clipboard.writeText(PIX_CODE).then(()=>{
+        alert('Código PIX copiado para a área de transferência. Abra seu app de banco e cole para pagar.');
+      }).catch(()=>{alert('Não foi possível copiar automaticamente. Selecione e copie o código manualmente.');});
+    });
+
+    // open QR using Google Chart API
+    document.getElementById('openQr').addEventListener('click', ()=>{
+      const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='+encodeURIComponent(PIX_CODE);
+      window.open(url,'_blank');
+    });
+
   </script>
 </body>
 </html>

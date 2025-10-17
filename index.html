@@ -1,173 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pagamento via PIX — Finalizar pedido</title>
-  <style>
-    :root{
-      --bg:#f5f7f8;
-      --card:#fff;
-      --accent:#0069ff;
-      --text:#111;
-      --muted:#6b7280;
-    }
-    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); margin:0; color:var(--text);}
-    .container{max-width:980px;margin:48px auto;padding:24px;}
-    .card{background:var(--card);border-radius:12px;box-shadow:0 6px 20px rgba(20,25,30,0.06);padding:28px;}
-    h1{margin:0 0 12px;font-size:22px;}
-    p.lead{margin:0 0 18px;color:var(--muted);}
-    .summary{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:22px;}
-    .product{flex:1;min-width:220px}
-    .price{font-weight:700;font-size:20px;}
-    .cta-wrap{text-align:center;margin-top:8px;}
-    .btn{
-      background:var(--accent);
-      color:white;
-      border:none;
-      padding:14px 22px;
-      border-radius:10px;
-      font-size:16px;
-      cursor:pointer;
-      box-shadow:0 6px 18px rgba(6,40,120,0.12);
-    }
-    .btn:active{transform:translateY(1px)}
-    /* Modal */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:50;}
-    .modal{background:var(--card);border-radius:12px;padding:20px;max-width:420px;width:94%;box-shadow:0 20px 40px rgba(10,15,30,0.2);text-align:center;}
-    .modal h2{margin:0 0 12px;font-size:18px;}
-    .qr{margin:12px 0;}
-    .small{font-size:13px;color:var(--muted);word-break:break-all;}
-    .actions{display:flex;gap:8px;justify-content:center;margin-top:14px;}
-    .btn-ghost{background:transparent;border:1px solid #e6e9ef;padding:10px 12px;border-radius:8px;cursor:pointer;}
-    .link-inline{display:inline-block;margin-top:10px;color:var(--accent);text-decoration:none;}
-    @media (min-width:720px){
-      .summary{gap:32px;}
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="card">
-      <h1>Resumo do pedido</h1>
-      <p class="lead">Revise seu pagamento. Clique em <strong>Finalizar pedido</strong> para ver o QR code PIX e copiar a payload.</p>
-
-      <div class="summary" aria-hidden="false">
-        <div class="product">
-          <div style="font-weight:600">Gerador Solar Portátil 200W</div>
-          <div class="small">Quantidade: 1</div>
-        </div>
-        <div>
-          <div class="price">R$420,00</div>
-        </div>
-      </div>
-
-      <!-- ÚNICA chamada para ação visível -->
-      <div class="cta-wrap">
-        <button id="finalizarBtn" class="btn" aria-controls="pixModal">Finalizar pedido</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal que aparece ao clicar no botão -->
-  <div id="pixModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document">
-      <h2>Pagamento via PIX</h2>
-      <p class="small">Escaneie o QR code com sua aplicação/banco ou copie a payload abaixo.</p>
-
-      <div class="qr">
-        <img id="qrImg" alt="QR code PIX" src="" width="300" height="300" style="max-width:100%;border-radius:8px;" />
-      </div>
-
-      <div class="small" id="payloadText" style="text-align:center;margin-top:8px;"></div>
-
-      <div class="actions">
-        <button id="copyBtn" class="btn-ghost" title="Copiar payload para área de transferência">Copiar payload</button>
-        <button id="openTxtBtn" class="btn-ghost" title="Abrir payload em nova aba">Abrir em nova aba</button>
-      </div>
-
-      <a id="directQrLink" class="link-inline" href="#" target="_blank" rel="noopener">Abrir imagem QR em nova aba</a>
-      <div style="margin-top:12px">
-        <button id="closeModal" class="btn-ghost" style="margin-top:8px">Fechar</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // *** A sua payload PIX fornecida (não modifique aqui, salvo se quiser alterar) ***
-    const pixPayload = "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
-
-    // Elementos
-    const finalizarBtn = document.getElementById('finalizarBtn');
-    const modal = document.getElementById('pixModal');
-    const qrImg = document.getElementById('qrImg');
-    const payloadText = document.getElementById('payloadText');
-    const copyBtn = document.getElementById('copyBtn');
-    const openTxtBtn = document.getElementById('openTxtBtn');
-    const directQrLink = document.getElementById('directQrLink');
-    const closeModal = document.getElementById('closeModal');
-
-    // Gera URL do QR via Google Chart API (gera imagem PNG com o texto codificado)
-    function geraQrUrl(payload){
-      const base = "https://chart.googleapis.com/chart";
-      const params = new URLSearchParams({
-        chs: "300x300",
-        cht: "qr",
-        chl: payload
-      });
-      return base + "?" + params.toString();
-    }
-
-    // Exibir modal com QR e payload
-    function abrirModal(){
-      // Monta URL do QR (usamos encodeURIComponent no momento do uso)
-      const qrUrl = geraQrUrl(pixPayload);
-      qrImg.src = qrUrl;
-      directQrLink.href = qrUrl;
-      payloadText.textContent = pixPayload;
-
-      modal.style.display = "flex";
-      modal.setAttribute('aria-hidden','false');
-    }
-
-    function fecharModal(){
-      modal.style.display = "none";
-      modal.setAttribute('aria-hidden','true');
-    }
-
-    // Copy to clipboard
-    async function copiarPayload(){
-      try {
-        await navigator.clipboard.writeText(pixPayload);
-        copyBtn.textContent = "Copiado!";
-        setTimeout(()=> copyBtn.textContent = "Copiar payload", 1600);
-      } catch (e){
-        // fallback: selecionar e instruir usuário
-        alert("Não foi possível copiar automaticamente. Selecione e copie manualmente:\n\n" + pixPayload);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador Solar Portátil 200W — R$420</title>
+    <style>
+      body {
+        background-color: #f9fafb;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
       }
-    }
+      .container {
+        max-width: 700px;
+        margin: 80px auto;
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #444;
+        margin-bottom: 30px;
+      }
+      .price {
+        font-size: 22px;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 10px;
+      }
+      .btn {
+        background-color: #0066ff;
+        color: white;
+        border: none;
+        padding: 14px 26px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        display: block;
+        margin: 30px auto 0;
+        transition: background-color 0.3s;
+      }
+      .btn:hover {
+        background-color: #004fce;
+      }
 
-    // Abre payload em nova aba como texto (data URI)
-    function abrirEmNovaAba(){
-      const dataUrl = "data:text/plain;charset=utf-8," + encodeURIComponent(pixPayload);
-      window.open(dataUrl, "_blank");
-    }
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 450px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      .modal-content h2 {
+        margin-top: 0;
+      }
+      .pix-code {
+        font-size: 12px;
+        background: #f1f1f1;
+        padding: 10px;
+        border-radius: 6px;
+        overflow-wrap: anywhere;
+        margin-bottom: 15px;
+      }
+      .close-btn {
+        margin-top: 15px;
+        background: #eee;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .qr-img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 10px;
+      }
+      .link {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #0066ff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Resumo do pedido</h1>
+      <p>
+        Revise seu pagamento. Clique em <b>Finalizar pedido</b> para ver o QR
+        Code PIX e copiar o código.
+      </p>
 
-    // Event listeners
-    finalizarBtn.addEventListener('click', abrirModal);
-    closeModal.addEventListener('click', fecharModal);
-    copyBtn.addEventListener('click', copiarPayload);
-    openTxtBtn.addEventListener('click', abrirEmNovaAba);
+      <h2>Gerador Solar Portátil 200W</h2>
+      <p>Quantidade: 1</p>
+      <div class="price">R$420,00</div>
 
-    // Fechar modal ao clicar fora
-    modal.addEventListener('click', function(e){
-      if(e.target === modal) fecharModal();
-    });
+      <button class="btn" onclick="abrirModal()">Finalizar pedido</button>
+    </div>
 
-    // Fechar com ESC
-    window.addEventListener('keydown', function(e){
-      if(e.key === "Escape") fecharModal();
-    });
-  </script>
-</body>
+    <div id="pixModal" class="modal">
+      <div class="modal-content">
+        <h2>Pagamento via PIX</h2>
+        <p>Escaneie o QR Code com seu aplicativo bancário ou copie o código abaixo:</p>
+        <img
+          id="qrPix"
+          class="qr-img"
+          alt="QR code PIX"
+        />
+        <div class="pix-code" id="pixCode"></div>
+        <button onclick="copiarPix()" class="btn" style="padding:10px 20px;font-size:14px;">Copiar código PIX</button>
+        <a id="linkQR" class="link" target="_blank">Abrir imagem QR em nova aba</a>
+        <button class="close-btn" onclick="fecharModal()">Fechar</button>
+      </div>
+    </div>
+
+    <script>
+      const pixPayload =
+        "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
+
+      function abrirModal() {
+        const modal = document.getElementById("pixModal");
+        const qr = document.getElementById("qrPix");
+        const code = document.getElementById("pixCode");
+        const link = document.getElementById("linkQR");
+
+        const qrUrl = `https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${encodeURIComponent(
+          pixPayload
+        )}`;
+        qr.src = qrUrl;
+        code.textContent = pixPayload;
+        link.href = qrUrl;
+        modal.style.display = "flex";
+      }
+
+      function fecharModal() {
+        document.getElementById("pixModal").style.display = "none";
+      }
+
+      function copiarPix() {
+        navigator.clipboard.writeText(pixPayload);
+        alert("Código PIX copiado com sucesso!");
+      }
+    </script>
+  </body>
 </html>

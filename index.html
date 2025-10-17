@@ -1,47 +1,128 @@
-<index.html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Gerador Solar Portátil 200W — R$420</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/869/869869.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerador Solar Portátil 200W — Flashfish</title>
   <style>
     :root {
       --azul: #0077ff;
       --amarelo: #ffcc00;
-      --verde: #25D366;
       --fundo: #f6f9fc;
       --texto: #222;
       --cinza: #666;
     }
-
     body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: var(--fundo);
       margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fundo);
       color: var(--texto);
-      scroll-behavior: smooth;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-
-    header {
-      background: linear-gradient(90deg, var(--azul), var(--amarelo));
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .carousel-slides {
+      display: flex;
+      width: 500%; /* 5 imagens */
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel-slides img {
+      width: 100%;
+      object-fit: cover;
+    }
+    .carousel-indicators {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .carousel-indicators button {
+      width: 12px;
+      height: 12px;
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.6);
+      cursor: pointer;
+    }
+    .carousel-indicators button.active {
+      background-color: var(--azul);
+    }
+    .btn-buy {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 8px;
+      background: var(--azul);
       color: #fff;
-      padding: 16px 0;
-      text-align: center;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn-buy:hover {
+      background: #005bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carousel-container">
+    <div class="carousel-slides" id="slides">
+      <!-- Coloque aqui os caminhos das 5 imagens -->
+      <img src="imagens/img1.png" alt="Imagem 1">
+      <img src="imagens/img2.png" alt="Imagem 2">
+      <img src="imagens/img3.png" alt="Imagem 3">
+      <img src="imagens/img4.png" alt="Imagem 4">
+      <img src="imagens/img5.png" alt="Imagem 5">
+    </div>
+    <div class="carousel-indicators" id="indicators">
+      <button data-index="0" class="active"></button>
+      <button data-index="1"></button>
+      <button data-index="2"></button>
+      <button data-index="3"></button>
+      <button data-index="4"></button>
+    </div>
+  </div>
+
+  <a href="https://mpago.la/1kmi37k" class="btn-buy" target="_blank" rel="noopener">Comprar Agora</a>
+
+  <script>
+    const slides = document.getElementById('slides');
+    const indicators = document.querySelectorAll('.carousel-indicators button');
+    let currentIndex = 0;
+    const totalSlides = indicators.length;
+
+    function goToSlide(index) {
+      slides.style.transform = `translateX(-${index * (100 / totalSlides)}%)`;
+      indicators.forEach(btn => btn.classList.remove('active'));
+      indicators[index].classList.add('active');
+      currentIndex = index;
     }
 
-    .wrap {
-      max-width: 840px;
-      margin: 32px auto;
-      padding: 24px;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-      animation: fadeIn 0.8s ease;
-    }
+    // Troca automática a cada 4 segundos
+    setInterval(() => {
+      let next = currentIndex + 1;
+      if (next >= totalSlides) next = 0;
+      goToSlide(next);
+    }, 4000);
 
-    h1 {
-      font-size: 26px;
+    // Permite clicar nos indicadores
+    indicators.forEach(btn => {
+      btn.addEventListener('click', () => {
+        goToSlide(parseInt(btn.dataset.index));
+      });
+    });
+  </script>
+
+</body>
+</html>

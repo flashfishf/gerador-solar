@@ -2,127 +2,245 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gerador Solar Portátil 200W — Flashfish</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gerador Solar Portátil 200W — R$420</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/869/869869.png" type="image/png">
   <style>
+    /* ===== ESTILOS GERAIS ===== */
     :root {
       --azul: #0077ff;
       --amarelo: #ffcc00;
+      --verde: #25D366;
       --fundo: #f6f9fc;
       --texto: #222;
       --cinza: #666;
     }
+
     body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
       background: var(--fundo);
+      margin: 0;
       color: var(--texto);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      scroll-behavior: smooth;
     }
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      overflow: hidden;
-      border-radius: 10px;
+
+    header {
+      background: linear-gradient(90deg, var(--azul), var(--amarelo));
+      color: #fff;
+      padding: 16px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    .wrap {
+      max-width: 840px;
+      margin: 32px auto;
+      padding: 24px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      animation: fadeIn 0.8s ease;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 12px 0;
+    }
+
+    p.lead {
+      color: var(--cinza);
+      font-size: 16px;
       margin-bottom: 20px;
     }
-    .carousel-slides {
-      display: flex;
-      width: 500%; /* 5 imagens */
-      transition: transform 0.5s ease-in-out;
+
+    .price {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--azul);
+      margin: 16px 0;
     }
-    .carousel-slides img {
+
+    /* ===== GALERIA ===== */
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-img {
       width: 100%;
+      max-height: 400px;
+      border-radius: 10px;
       object-fit: cover;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
     }
-    .carousel-indicators {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
+
+    .main-img:hover {
+      transform: scale(1.02);
+    }
+
+    .thumbs {
       display: flex;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    .carousel-indicators button {
-      width: 12px;
-      height: 12px;
-      border: none;
-      border-radius: 50%;
-      background-color: rgba(255,255,255,0.6);
-      cursor: pointer;
-    }
-    .carousel-indicators button.active {
-      background-color: var(--azul);
-    }
-    .btn-buy {
-      display: inline-block;
-      padding: 14px 24px;
+
+    .thumbs img {
+      width: 90px;
+      height: 70px;
+      object-fit: cover;
       border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .thumbs img:hover {
+      transform: scale(1.05);
+      border: 2px solid var(--azul);
+    }
+
+    /* ===== BOTÕES ===== */
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
       background: var(--azul);
       color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
+      font-weight: 700;
+      margin-right: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .btn-buy:hover {
-      background: #005bb5;
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+    }
+
+    .btn.wh {
+      background: var(--verde);
+    }
+
+    .btn.wh:hover {
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    }
+
+    .features {
+      margin-top: 24px;
+    }
+
+    .features h3 {
+      color: var(--azul);
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .small {
+      font-size: 14px;
+      color: var(--cinza);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: var(--cinza);
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+    }
+
+    /* ===== ANIMAÇÃO ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    @media(max-width: 600px) {
+      .wrap {
+        margin: 16px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .btn {
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .thumbs img {
+        width: 70px;
+        height: 60px;
+      }
     }
   </style>
 </head>
 <body>
+  <header>⚡ Energia Solar Portátil Flashfish</header>
 
-  <div class="carousel-container">
-    <div class="carousel-slides" id="slides">
-      <!-- Coloque aqui os caminhos das 5 imagens -->
-      <img src="imagens/img1.png" alt="Imagem 1">
-      <img src="imagens/img2.png" alt="Imagem 2">
-      <img src="imagens/img3.png" alt="Imagem 3">
-      <img src="imagens/img4.png" alt="Imagem 4">
-      <img src="imagens/img5.png" alt="Imagem 5">
+  <div class="wrap">
+    <!-- GALERIA -->
+    <div class="gallery">
+      <img id="mainImage" src="https://i.imgur.com/3dDgA1B.jpg" alt="Gerador Solar Portátil" class="main-img">
+
+      <div class="thumbs">
+        <img src="https://i.imgur.com/3dDgA1B.jpg" alt="Gerador Solar" onclick="changeImage(this)">
+        <img src="https://i.imgur.com/tm3bbfa.jpg" alt="Painel Solar" onclick="changeImage(this)">
+        <img src="https://i.imgur.com/s4Ir4YV.jpg" alt="Kit Completo" onclick="changeImage(this)">
+        <img src="https://i.imgur.com/pb7vljS.jpg" alt="Uso Externo" onclick="changeImage(this)">
+      </div>
     </div>
-    <div class="carousel-indicators" id="indicators">
-      <button data-index="0" class="active"></button>
-      <button data-index="1"></button>
-      <button data-index="2"></button>
-      <button data-index="3"></button>
-      <button data-index="4"></button>
+
+    <h1>Gerador Solar Portátil 200W</h1>
+    <p class="lead">Energia onde você estiver — frete grátis e 1 ano de garantia.</p>
+
+    <div class="price">R$420 à vista</div>
+
+    <a class="btn" href="https://mpago.la/2ZJnBVT" target="_blank" rel="noopener">💳 Pagar agora</a>
+    <a class="btn wh" href="https://wa.me/5511971482248?text=Ol%C3%A1%2C%20quero%20o%20Gerador%20Solar%20200W%20-%20R%24420" target="_blank">💬 Falar no WhatsApp</a>
+
+    <div class="features">
+      <h3>O que vem no pacote</h3>
+      <ul>
+        <li>Gerador portátil de 200W</li>
+        <li>Painel solar dobrável</li>
+        <li>Cabos e adaptadores</li>
+        <li>Manual + 1 ano de garantia</li>
+      </ul>
+      <p class="small">
+        Após o pagamento, preencha o formulário de entrega:  
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBS6-frWUn5exUIvOaDz613FH9I9XzLhwqmgjJwgFrD5Iigg/viewform?usp=preview" target="_blank">Formulário de Entrega</a>.
+      </p>
     </div>
+
+    <footer>
+      <p>Envio com rastreamento — qualquer dúvida, fale no WhatsApp.</p>
+      <p class="small">© 2025 Flashfish Energia Solar — Todos os direitos reservados.</p>
+    </footer>
   </div>
 
-  <a href="https://mpago.la/1kmi37k" class="btn-buy" target="_blank" rel="noopener">Comprar Agora</a>
-
   <script>
-    const slides = document.getElementById('slides');
-    const indicators = document.querySelectorAll('.carousel-indicators button');
-    let currentIndex = 0;
-    const totalSlides = indicators.length;
-
-    function goToSlide(index) {
-      slides.style.transform = `translateX(-${index * (100 / totalSlides)}%)`;
-      indicators.forEach(btn => btn.classList.remove('active'));
-      indicators[index].classList.add('active');
-      currentIndex = index;
+    // Troca a imagem principal ao clicar em uma miniatura
+    function changeImage(el) {
+      const mainImg = document.getElementById("mainImage");
+      mainImg.src = el.src;
     }
-
-    // Troca automática a cada 4 segundos
-    setInterval(() => {
-      let next = currentIndex + 1;
-      if (next >= totalSlides) next = 0;
-      goToSlide(next);
-    }, 4000);
-
-    // Permite clicar nos indicadores
-    indicators.forEach(btn => {
-      btn.addEventListener('click', () => {
-        goToSlide(parseInt(btn.dataset.index));
-      });
-    });
   </script>
+</body>
+</html>
 
 </body>
 </html>

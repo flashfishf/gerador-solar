@@ -10,9 +10,9 @@
   <style>
     :root {
       --azul: #0077ff;
-      --verde: #25D366;
+      --verde: #00c853;
       --cinza: #555;
-      --fundo: #f8fafc;
+      --fundo: #f7f9fc;
       --branco: #fff;
     }
 
@@ -21,17 +21,39 @@
       background: var(--fundo);
       color: #222;
       margin: 0;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+    }
+
+    /* 🌟 Banner Elegante */
+    .promo-banner {
+      background: linear-gradient(90deg, #0077ff, #00c853);
+      color: #fff;
+      text-align: center;
+      padding: 12px 0;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      animation: brilho 3s infinite alternate;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    @keyframes brilho {
+      from { filter: brightness(1); }
+      to { filter: brightness(1.25); }
     }
 
     header {
-      background: linear-gradient(90deg, var(--azul), #00b7ff);
-      color: #fff;
+      background: #fff;
+      color: #111;
       text-align: center;
       padding: 18px 0;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      font-weight: 700;
       font-size: 18px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .container {
@@ -39,8 +61,8 @@
       margin: 40px auto;
       padding: 24px;
       background: var(--branco);
-      border-radius: 18px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       animation: fadeIn 0.8s ease;
     }
 
@@ -50,9 +72,9 @@
 
     .gallery img {
       width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
 
     .gallery img:hover {
@@ -63,7 +85,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-top: 12px;
+      margin-top: 14px;
       flex-wrap: wrap;
     }
 
@@ -71,7 +93,7 @@
       width: 100px;
       height: 80px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       opacity: 0.7;
       transition: all 0.2s ease;
@@ -83,36 +105,40 @@
     }
 
     h1 {
-      font-size: 26px;
-      margin: 20px 0 8px;
+      font-size: 28px;
+      margin: 24px 0 10px;
       text-align: center;
+      color: #111;
     }
 
     p.lead {
       text-align: center;
       color: var(--cinza);
       font-size: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .price {
       text-align: center;
       color: var(--azul);
       font-weight: 700;
-      font-size: 32px;
-      margin: 16px 0;
+      font-size: 34px;
+      margin: 18px 0;
     }
 
-    /* 💠 FAIXA DE CONFIANÇA */
+    /* 💠 Faixa de Confiança */
     .trust {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
-      background: linear-gradient(90deg, #f0f7ff, #f8fcff);
-      border-radius: 14px;
-      padding: 16px;
-      margin: 20px 0;
-      box-shadow: inset 0 0 12px rgba(0,0,0,0.05);
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 18px;
+      padding: 18px;
+      margin: 25px 0;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.05);
+      animation: slideFade 0.6s ease forwards;
     }
 
     .trust-item {
@@ -122,7 +148,7 @@
       font-size: 14px;
       color: var(--cinza);
       margin: 6px 0;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease;
     }
 
     .trust-item:hover {
@@ -133,34 +159,40 @@
       width: 22px;
       height: 22px;
       color: var(--azul);
-      transition: all 0.3s ease;
     }
 
+    /* Botões */
     .btns {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .btn {
       display: inline-block;
-      padding: 14px 26px;
+      padding: 14px 28px;
       border-radius: 12px;
       font-weight: 600;
       color: #fff;
       text-decoration: none;
       margin: 6px;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .btn.pay { background: var(--azul); }
-    .btn.wh { background: var(--verde); }
+    .btn.pay {
+      background: linear-gradient(90deg, #0077ff, #00bfff);
+    }
+    .btn.form {
+      background: linear-gradient(90deg, #00c853, #25D366);
+    }
 
     .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      filter: brightness(1.1);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
-    /* 🌈 SEÇÃO DE BENEFÍCIOS */
+    /* 🌿 Benefícios */
     .benefits {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -168,37 +200,36 @@
       text-align: center;
       margin-top: 40px;
       padding: 30px 20px;
-      background: linear-gradient(145deg, #eef6ff, #fafdff);
-      border-radius: 16px;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.04);
+      background: linear-gradient(145deg, #f1f6ff, #fbfdff);
+      border-radius: 18px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.03);
     }
 
     .benefit {
-      background: rgba(255,255,255,0.8);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.05);
       border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      backdrop-filter: blur(6px);
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
     }
 
     .benefit:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     }
 
     .benefit svg {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       color: var(--azul);
       margin-bottom: 10px;
       transition: all 0.3s ease;
-      filter: drop-shadow(0 0 0 transparent);
     }
 
     .benefit:hover svg {
       transform: scale(1.15);
-      filter: drop-shadow(0 0 6px rgba(0,119,255,0.4));
+      filter: drop-shadow(0 0 6px rgba(0,119,255,0.3));
     }
 
     .benefit h4 {
@@ -213,12 +244,12 @@
     }
 
     .features {
-      margin-top: 40px;
+      margin-top: 35px;
     }
 
     .features h3 {
       color: var(--azul);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-size: 20px;
     }
 
@@ -226,19 +257,13 @@
       line-height: 1.8;
     }
 
-    .small {
-      color: var(--cinza);
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
     footer {
-      margin-top: 40px;
+      margin-top: 50px;
       background: #111;
       color: #bbb;
-      padding: 20px;
+      padding: 22px;
       text-align: center;
-      border-radius: 0 0 18px 18px;
+      border-radius: 0 0 20px 20px;
       font-size: 13px;
     }
 
@@ -247,15 +272,26 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes slideFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 600px) {
       .thumbs img { width: 80px; height: 60px; }
       .price { font-size: 26px; }
       h1 { font-size: 22px; }
       .trust { flex-direction: column; align-items: center; }
+      .promo-banner { font-size: 14px; padding: 8px; }
     }
   </style>
 </head>
 <body>
+  <!-- 🌟 Banner Elegante -->
+  <div class="promo-banner">
+    ☀️ Oferta especial — Frete grátis em todo o Brasil!
+  </div>
+
   <header>⚡ Energia Solar Portátil Flashfish</header>
 
   <div class="container">
@@ -274,7 +310,7 @@
 
     <div class="price">R$420 à vista</div>
 
-    <!-- 💠 FAIXA DE CONFIANÇA -->
+    <!-- 💠 Faixa de Confiança -->
     <div class="trust">
       <div class="trust-item"><i data-lucide="truck"></i> Frete Grátis</div>
       <div class="trust-item"><i data-lucide="shield-check"></i> Garantia de 1 Ano</div>
@@ -284,31 +320,14 @@
 
     <div class="btns">
       <a class="btn pay" href="https://mpago.la/1kmi37k" target="_blank" rel="noopener">💳 Pagar agora</a>
-      <a class="btn wh" href="https://wa.me/5511971482248?text=Ol%C3%A1%2C%20quero%20o%20Gerador%20Solar%20200W%20-%20R%24420" target="_blank">💬 Falar no WhatsApp</a>
+      <a class="btn form" href="https://docs.google.com/forms/d/e/1FAIpQLSeBS6-frWUn5exUIvOaDz613FH9I9XzLhwqmgjJwgFrD5Iigg/viewform?usp=preview" target="_blank" rel="noopener">📝 Preencher dados de entrega</a>
     </div>
 
-    <!-- 🌞 SEÇÃO DE BENEFÍCIOS -->
     <section class="benefits">
-      <div class="benefit">
-        <i data-lucide="battery-charging"></i>
-        <h4>Energia Limpa</h4>
-        <p>Recarregue com o sol — 100% sustentável e ecológico.</p>
-      </div>
-      <div class="benefit">
-        <i data-lucide="briefcase"></i>
-        <h4>Portátil e Leve</h4>
-        <p>Design compacto, fácil de transportar em viagens e acampamentos.</p>
-      </div>
-      <div class="benefit">
-        <i data-lucide="volume-x"></i>
-        <h4>Silencioso</h4>
-        <p>Zero ruído durante o uso — ideal para ambientes tranquilos.</p>
-      </div>
-      <div class="benefit">
-        <i data-lucide="zap"></i>
-        <h4>Potência 200W</h4>
-        <p>Carregue notebooks, celulares e pequenos eletrodomésticos.</p>
-      </div>
+      <div class="benefit"><i data-lucide="battery-charging"></i><h4>Energia Limpa</h4><p>Recarregue com o sol — 100% sustentável e ecológico.</p></div>
+      <div class="benefit"><i data-lucide="briefcase"></i><h4>Portátil e Leve</h4><p>Design compacto, ideal para viagens e acampamentos.</p></div>
+      <div class="benefit"><i data-lucide="volume-x"></i><h4>Silencioso</h4><p>Zero ruído durante o uso — perfeito para locais tranquilos.</p></div>
+      <div class="benefit"><i data-lucide="zap"></i><h4>Potência 200W</h4><p>Carregue notebooks, celulares e pequenos eletrodomésticos.</p></div>
     </section>
 
     <div class="features">
@@ -319,16 +338,12 @@
         <li>Cabos e adaptadores</li>
         <li>Manual + 1 ano de garantia</li>
       </ul>
-
-      <p class="small">
-        Após o pagamento, preencha o <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBS6-frWUn5exUIvOaDz613FH9I9XzLhwqmgjJwgFrD5Iigg/viewform?usp=preview" target="_blank">Formulário de Entrega</a>.
-      </p>
     </div>
   </div>
 
   <footer>
     © 2025 Flashfish Energia Solar — Todos os direitos reservados. <br>
-    Envio com rastreamento — qualquer dúvida, fale no WhatsApp.
+    Envio com rastreamento — qualquer dúvida, fale conosco.
   </footer>
 
   <script>

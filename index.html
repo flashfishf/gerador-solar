@@ -3,162 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Gerador Solar Portátil 200W — R$420</title>
+  <title>Gerador Solar Portátil 200W — Flashfish</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/869/869869.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== ESTILOS GERAIS ===== */
     :root {
       --azul: #0077ff;
-      --amarelo: #ffcc00;
       --verde: #25D366;
-      --fundo: #f6f9fc;
-      --texto: #222;
-      --cinza: #666;
+      --cinza: #555;
+      --fundo: #f8fafc;
+      --branco: #fff;
+    }
+
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeria de Imagens</title>
+  <style>
+    :root {
+      --cinza: #555;
+      --fundo: #f8fafc;
+      --branco: #fff;
     }
 
     body {
-      font-family: 'Inter', Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--fundo);
+      color: #222;
       margin: 0;
-      color: var(--texto);
-      scroll-behavior: smooth;
     }
 
-    header {
-      background: linear-gradient(90deg, var(--azul), var(--amarelo));
-      color: #fff;
-      padding: 16px 0;
+    .galeria {
       text-align: center;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.5px;
+      margin-top: 20px;
     }
 
-    .wrap {
-      max-width: 840px;
-      margin: 32px auto;
-      padding: 24px;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-      animation: fadeIn 0.8s ease;
-    }
-
-    img {
-      width: 100%;
+    .galeria img.principal {
+      width: 400px;
       border-radius: 10px;
-      margin-bottom: 18px;
     }
 
-    h1 {
-      font-size: 26px;
-      margin: 12px 0;
+    .thumbs img {
+      width: 80px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: transform 0.3s;
     }
 
-    p.lead {
-      color: var(--cinza);
-      font-size: 16px;
-      margin-bottom: 20px;
+    .thumbs img:hover {
+      transform: scale(1.1);
     }
+  </style>
+</head>
 
-    .price {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--azul);
-      margin: 16px 0;
+<body>
+  <!-- Galeria de imagens do produto -->
+  <div class="galeria">
+    <img id="main-img" src="1f0fbed2-dee5-49bc-a848-c68e1f9dd390.png" alt="Gerador Solar Flashfish" class="principal">
+
+    <div class="thumbs">
+      <img src="1f0fbed2-dee5-49bc-a848-c68e1f9dd390.png" alt="Foto 1" onclick="trocarImagem(this)">
+      <img src="727e461b-bbe9-437b-8c53-ca05f51c016d.png" alt="Foto 2" onclick="trocarImagem(this)">
+      <img src="359bdcff-f8d5-4671-9415-a44531906939.png" alt="Foto 3" onclick="trocarImagem(this)">
+      <img src="0a242e48-71c8-47ab-a3d6-0f2a98f056e7.png" alt="Foto 4" onclick="trocarImagem(this)">
+    </div>
+  </div>
+
+  <script>
+    function trocarImagem(el) {
+      document.getElementById('main-img').src = el.src;
     }
+  </script>
+</body>
+</html>
 
-    /* ===== BOTÕES ===== */
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      background: var(--azul);
-      color: #fff;
-      font-weight: 700;
-      margin-right: 10px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+   
+</div>
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
-    }
-
-    .btn.wh {
-      background: var(--verde);
-    }
-
-    .btn.wh:hover {
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-    }
-
-    .features {
-      margin-top: 24px;
-    }
-
-    .features h3 {
-      color: var(--azul);
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .small {
-      font-size: 14px;
-      color: var(--cinza);
-    }
-
-    footer {
-      margin-top: 30px;
-      font-size: 13px;
-      color: var(--cinza);
-      text-align: center;
-      padding-top: 16px;
-      border-top: 1px solid #eee;
-    }
-
-    /* ===== ANIMAÇÃO ===== */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===== RESPONSIVIDADE ===== */
-    @media(max-width: 600px) {
-      .wrap {
-        margin: 16px;
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 22px;
-      }
-
-      .btn {
-        display: block;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-    }
+  
   </style>
 </head>
 <body>
   <header>⚡ Energia Solar Portátil Flashfish</header>
 
-  <div class="wrap">
-    <img src="https://i.imgur.com/3dDgA1B.jpg" alt="Gerador Solar Portátil 200W">
+  <div class="container">
+    <div class="gallery">
+      <img id="main-img" src="100fbed2-dee5-49bc-a848-c68e1fd9d390.png" alt="Gerador Solar Portátil Flashfish">
+      <div class="thumbs">
+        <img src="100fbed2-dee5-49bc-a848-c68e1fd9d390.png" class="active" onclick="trocarImagem(this)">
+        <img src="727e4681-bbe9-43fb-8c63-ca0f651c016d.png" onclick="trocarImagem(this)">
+        <img src="359bcdff-f8d5-4671-9415-444531906399.png" onclick="trocarImagem(this)">
+        <img src="0a242e48-71c8-47ab-a3d6-0f2a980f65e7.png" onclick="trocarImagem(this)">
+      </div>
+    </div>
+
     <h1>Gerador Solar Portátil 200W</h1>
     <p class="lead">Energia onde você estiver — frete grátis e 1 ano de garantia.</p>
 
     <div class="price">R$420 à vista</div>
 
-    <a class="btn" href="https://mpago.la/1kmi37k" target="_blank" rel="noopener">💳 Pagar agora</a>
-    <a class="btn wh" href="https://wa.me/5511971482248?text=Ol%C3%A1%2C%20quero%20o%20Gerador%20Solar%20200W%20-%20R%24420" target="_blank">💬 Falar no WhatsApp</a>
+    <div class="btns">
+      <a class="btn pay" href="https://mpago.la/1kmi37k" target="_blank" rel="noopener">💳 Pagar agora</a>
+      <a class="btn wh" href="https://wa.me/5511971482248?text=Ol%C3%A1%2C%20quero%20o%20Gerador%20Solar%20200W%20-%20R%24420" target="_blank">💬 Falar no WhatsApp</a>
+    </div>
 
     <div class="features">
       <h3>O que vem no pacote</h3>
@@ -168,16 +117,24 @@
         <li>Cabos e adaptadores</li>
         <li>Manual + 1 ano de garantia</li>
       </ul>
+
       <p class="small">
-        Após o pagamento, preencha o formulário de entrega:  
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBS6-frWUn5exUIvOaDz613FH9I9XzLhwqmgjJwgFrD5Iigg/viewform?usp=preview" target="_blank">Formulário de Entrega</a>.
+        Após o pagamento, preencha o <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBS6-frWUn5exUIvOaDz613FH9I9XzLhwqmgjJwgFrD5Iigg/viewform?usp=preview" target="_blank">Formulário de Entrega</a>.
       </p>
     </div>
-
-    <footer>
-      <p>Envio com rastreamento — qualquer dúvida, fale no WhatsApp.</p>
-      <p class="small">© 2025 Flashfish Energia Solar — Todos os direitos reservados.</p>
-    </footer>
   </div>
+
+  <footer>
+    © 2025 Flashfish Energia Solar — Todos os direitos reservados. <br>
+    Envio com rastreamento — qualquer dúvida, fale no WhatsApp.
+  </footer>
+
+  <script>
+    function trocarImagem(el) {
+      document.getElementById('main-img').src = el.src;
+      document.querySelectorAll('.thumbs img').forEach(img => img.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
 </body>
 </html>

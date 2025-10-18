@@ -205,12 +205,29 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     // Images (base64 placeholders replaced server side)
     const imgs = {
-     <div id="thumbs">
-  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png" alt="Produto 1">
-  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564322438_2730483453951842_163129682172245289_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564322438_2730483453951842_163129682172245289_n.png" alt="Produto 2">
-  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368050_1414257944036048_2298649083239087844_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368050_1414257944036048_2298649083239087844_n.png" alt="Produto 3">
-  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566543613_1562638935171710_1538030362976916496_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566543613_1562638935171710_1538030362976916496_n.png" alt="Produto 4">
-</div>
+    <script>
+document.getElementById('ano').textContent = new Date().getFullYear();
+
+
+const imagens = [
+  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png",
+  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564232438_273048539951842_1631926872245289_n.png",
+  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368509_1414257940430844_228964893239087844_n.png",
+  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566634513_15626839511710_15380306297616496_n.png"
+];
+
+const mainImg = document.getElementById("mainImg");
+const thumbs = document.querySelectorAll(".thumb");
+
+thumbs.forEach(img => {
+  img.addEventListener("click", e => {
+    thumbs.forEach(i => i.classList.remove("ativo"));
+    e.target.classList.add("ativo");
+    mainImg.src = e.target.dataset.src;
+  });
+});
+</script>
+
 
 <img id="mainImg" src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png" alt="Imagem principal">
 

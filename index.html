@@ -205,16 +205,36 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     // Images (base64 placeholders replaced server side)
     const imgs = {
-    <script>
-document.getElementById('ano').textContent = new Date().getFullYear();
+   <!-- Galeria principal -->
+<div class="gallery">
+  <img id="mainImg" 
+       src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png"
+       alt="Imagem principal" />
 
-const imagens = [
-  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png",
-  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564232438_273048539951842_1631926872245289_n.png",
-  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368509_1414257940430844_228964893239087844_n.png",
-  "https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566634513_15626839511710_15380306297616496_n.png"
-];
+  <div class="thumbs">
+    <img class="thumb ativo"
+         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png"
+         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png"
+         alt="Imagem 1">
 
+    <img class="thumb"
+         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564232438_273048539951842_1631926872245289_n.png"
+         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564232438_273048539951842_1631926872245289_n.png"
+         alt="Imagem 2">
+
+    <img class="thumb"
+         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368509_1414257940430844_228964893239087844_n.png"
+         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368509_1414257940430844_228964893239087844_n.png"
+         alt="Imagem 3">
+
+    <img class="thumb"
+         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566634513_15626839511710_15380306297616496_n.png"
+         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566634513_15626839511710_15380306297616496_n.png"
+         alt="Imagem 4">
+  </div>
+</div>
+
+<script>
 const mainImg = document.getElementById("mainImg");
 const thumbs = document.querySelectorAll(".thumb");
 

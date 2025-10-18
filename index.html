@@ -205,10 +205,15 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     // Images (base64 placeholders replaced server side)
     const imgs = {
-      i1: 'https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png',
-      i2: 'https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564322438_2730483453951842_163129682172245289_n.png',
-      i3: 'https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368050_1414257944036048_2298649083239087844_n.png',
-      i4: 'https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566543613_1562638935171710_1538030362976916496_n.png'
+     <div id="thumbs">
+  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png" alt="Produto 1">
+  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564322438_2730483453951842_163129682172245289_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564322438_2730483453951842_163129682172245289_n.png" alt="Produto 2">
+  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368050_1414257944036048_2298649083239087844_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368050_1414257944036048_2298649083239087844_n.png" alt="Produto 3">
+  <img src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566543613_1562638935171710_1538030362976916496_n.png" data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566543613_1562638935171710_1538030362976916496_n.png" alt="Produto 4">
+</div>
+
+<img id="mainImg" src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png" alt="Imagem principal">
+
     };
     // Thumb click
     document.querySelectorAll('#thumbs img').forEach(img=>{

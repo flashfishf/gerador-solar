@@ -78,11 +78,10 @@
           <img src="DATA_IMG_1" id="mainImg" alt="FlashFish E200">
         </div>
         <div class="thumbs" id="thumbs">
-        <img src="8893e743-07ab-42ab-8478-8eb604e74085.png" alt="FlashFish E200 - Frente">
-<img src="53614dca-7478-4e44-a4f4-ff2513b0436e.png" alt="FlashFish E200 - Lado">
-<img src="92db7b16-fe2d-4f80-a9d3-3e5479e563a1.png" alt="FlashFish E200 - Painel">
-<img src="f59df214-93b9-48e2-920a-bb0b8f6c8321.png" alt="FlashFish E200 - Uso real">
-
+          <img src="DATA_IMG_1" class="active" data-src="DATA_IMG_1">
+          <img src="DATA_IMG_2" data-src="DATA_IMG_2">
+          <img src="DATA_IMG_3" data-src="DATA_IMG_3">
+          <img src="DATA_IMG_4" data-src="DATA_IMG_4">
         </div>
       </div>
 
@@ -206,52 +205,10 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     // Images (base64 placeholders replaced server side)
     const imgs = {
-   <!-- Galeria principal -->
-<div class="gallery">
-  <img id="mainImg" 
-       src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png"
-       alt="Imagem principal" />
-
-  <div class="thumbs">
-    <img class="thumb ativo"
-         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png"
-         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png"
-         alt="Imagem 1">
-
-    <img class="thumb"
-         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564232438_273048539951842_1631926872245289_n.png"
-         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564232438_273048539951842_1631926872245289_n.png"
-         alt="Imagem 2">
-
-    <img class="thumb"
-         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368509_1414257940430844_228964893239087844_n.png"
-         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566368509_1414257940430844_228964893239087844_n.png"
-         alt="Imagem 3">
-
-    <img class="thumb"
-         src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566634513_15626839511710_15380306297616496_n.png"
-         data-src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/566634513_15626839511710_15380306297616496_n.png"
-         alt="Imagem 4">
-  </div>
-</div>
-
-<script>
-const mainImg = document.getElementById("mainImg");
-const thumbs = document.querySelectorAll(".thumb");
-
-thumbs.forEach(img => {
-  img.addEventListener("click", e => {
-    thumbs.forEach(i => i.classList.remove("ativo"));
-    e.target.classList.add("ativo");
-    mainImg.src = e.target.dataset.src;
-  });
-});
-</script>
-
-
-
-<img id="mainImg" src="https://raw.githubusercontent.com/flashfishf/gerador-solar/main/564156412_2615724512120174_5391443072875744585_n.png" alt="Imagem principal">
-
+      i1: 'DATA_IMG_1',
+      i2: 'DATA_IMG_2',
+      i3: 'DATA_IMG_3',
+      i4: 'DATA_IMG_4'
     };
     // Thumb click
     document.querySelectorAll('#thumbs img').forEach(img=>{

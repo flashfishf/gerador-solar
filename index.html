@@ -1,177 +1,148 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FlashFish E200 — Gerador Elétrico Portátil</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FlashFish E200 — Gerador Solar Portátil 200W</title>
+  <meta name="description" content="FlashFish E200 — Gerador Elétrico Portátil 200W. Compra rápida com PIX seguro." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg:#0b0f14; --card:#0f1620; --muted:#9aa6b2;
+      --accent:#ff7a18; --accent-2:#60a5fa;
+      --glass:rgba(255,255,255,0.03); --max-w:980px;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color-scheme:dark;
+    }
+    * { box-sizing:border-box }
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0d1117;
-      color: #f0f6fc;
-      margin: 0;
-      padding: 0;
+      margin:0; background:linear-gradient(180deg,var(--bg),#06101a 80%);
+      color:#e9f2f8; -webkit-font-smoothing:antialiased;
     }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-    h1 { font-size: 1.8em; margin-bottom: 10px; }
-    .price {
-      font-size: 2em;
-      font-weight: bold;
-      color: #ff7b00;
-      margin: 10px 0;
-    }
-    .pix-secure {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.95em;
-      color: #9ca3af;
-    }
-    .pix-secure img {
-      width: 22px;
-      height: 22px;
-    }
-    .button {
-      background: #f97316;
-      border: none;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1em;
-      transition: background 0.3s;
-    }
-    .button:hover {
-      background: #ea580c;
-    }
-    .features {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin: 20px 0;
-      background: #161b22;
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .feature {
-      flex: 1;
-      min-width: 150px;
-      margin: 10px;
-      text-align: center;
-    }
-    .feature b { color: #fff; }
-    .desc {
-      margin: 20px 0;
-      line-height: 1.6;
-    }
-    .order-details {
-      margin-top: 30px;
-      background: #161b22;
-      border-radius: 12px;
-      padding: 20px;
-    }
+    .container { max-width:var(--max-w); margin:28px auto; padding:28px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .logo { display:flex; align-items:center; gap:12px; }
+    .mark { width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#ffb572);
+      display:flex; align-items:center; justify-content:center; font-weight:800; color:#081018; }
+    h1 { margin:8px 0; font-size:28px; }
+    p.lead { color:var(--muted); margin:0; }
+
+    .card { background:var(--card); padding:20px; border-radius:12px; margin-top:18px; }
+    .price { font-size:28px; font-weight:800; color:var(--accent); }
+    .specs { color:var(--muted); margin-top:8px; display:flex; align-items:center; gap:8px; }
+    .specs img { width:22px; height:22px; }
+
+    .btn { cursor:pointer; border:0; padding:12px 18px; border-radius:10px; font-weight:700; }
+    .btn.primary { background:linear-gradient(90deg,var(--accent),#ffb572); color:#081018; }
+    .btn.ghost { background:transparent; border:1px solid rgba(255,255,255,0.1); color:var(--muted); }
+
+    .features { display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; }
+    .feature { flex:1; padding:12px; border-radius:10px; background:rgba(255,255,255,0.02); text-align:center; }
+
     .reviews {
-      margin-top: 40px;
-      background: #161b22;
-      border-radius: 12px;
-      padding: 25px;
+      margin-top:40px; background:var(--card); border-radius:12px; padding:25px;
     }
-    .reviews h2 {
-      margin-bottom: 15px;
+    .reviews h2 { margin-bottom:15px; }
+    .review { border-bottom:1px solid #30363d; padding:10px 0; }
+    .review:last-child { border-bottom:none; }
+    .stars { color:#ffb572; }
+
+    footer {
+      text-align:center; padding:25px; margin-top:50px;
+      font-size:0.9em; color:var(--muted); background:#0f1620;
+      border-top:1px solid rgba(255,255,255,0.05);
     }
-    .review {
-      border-bottom: 1px solid #30363d;
-      padding: 10px 0;
+    footer a { color:var(--accent); text-decoration:none; margin:0 8px; }
+
+    /* video */
+    .video-container {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      background: #000; border-radius: 12px; margin: 30px auto; box-shadow: 0 6px 25px rgba(0,0,0,0.35);
     }
-    .review:last-child {
-      border-bottom: none;
-    }
-    .footer {
-      text-align: center;
-      padding: 25px;
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: #9ca3af;
-      background: #161b22;
-    }
-    .footer a {
-      color: #ff7b00;
-      text-decoration: none;
+    .video-container iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h1>FlashFish E200 — Gerador Elétrico Portátil</h1>
-    <p>Potência nominal <b>200W</b> • Capacidade <b>151Wh</b></p>
-
-    <div class="price">R$ 420,00</div>
-    <div class="pix-secure">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Logo_pix_2021.svg" alt="Pix Logo">
-      <span>Pagamento via PIX — envio em até 3 dias úteis • <b>Transação segura</b></span>
-    </div>
-
-    <div style="margin-top:20px;">
-      <button class="button">Finalizar Compra</button>
-    </div>
-
-    <div class="features">
-      <div class="feature">
-        <b>Compacto</b><br>Fácil de transportar
+    <header>
+      <div class="logo">
+        <div class="mark">FF</div>
+        <div>
+          <div style="font-weight:800">FlashFish Store</div>
+          <div class="muted">Produto oficial • Entrega rápida</div>
+        </div>
       </div>
-      <div class="feature">
-        <b>3 maneiras de carregar</b><br>Rede, painel solar, carro
+    </header>
+
+    <div class="card">
+      <h1>FlashFish E200 — Gerador Elétrico Portátil</h1>
+      <p class="lead">Potência nominal <strong>200W</strong> • Capacidade <strong>151Wh</strong></p>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px">
+        <div>
+          <div class="price">R$ 420,00</div>
+          <div class="specs">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Logo_pix_2021.svg" alt="PIX Seguro">
+            <span>Pagamento via PIX — envio em até 3 dias úteis • <b>Transação segura</b></span>
+          </div>
+        </div>
+        <button class="btn primary">Finalizar Compra</button>
       </div>
-      <div class="feature">
-        <b>Garantia</b><br>12 meses
+
+      <div class="features">
+        <div class="feature"><div style="font-weight:800">Compacto</div><div class="muted">Fácil de transportar</div></div>
+        <div class="feature"><div style="font-weight:800">3 maneiras de carregar</div><div class="muted">Rede, painel solar, carro</div></div>
+        <div class="feature"><div style="font-weight:800">Garantia</div><div class="muted">12 meses</div></div>
       </div>
+
+      <section style="margin-top:16px">
+        <h3>Descrição</h3>
+        <p class="muted">
+          Unidade única: FlashFish E200, gerador portátil com saídas USB, DC e saída CA 110V.
+          Ideal para viagens, emergência e uso doméstico leve.
+        </p>
+      </section>
     </div>
 
-    <div class="desc">
-      <h2>Descrição</h2>
-      Unidade única: FlashFish E200, gerador portátil com saídas USB, DC e saída CA 110V.
-      Ideal para viagens, emergência e uso doméstico leve.
-    </div>
-
-    <div class="order-details">
-      <h3>Detalhes do pedido</h3>
-      <p><b>Produto:</b> FlashFish E200</p>
-      <p><b>Quantidade:</b> 1</p>
-      <p><b>Total:</b> R$ 420,00</p>
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/muOOXJUXmqk?si=2wfKniw_xOFKiJK9&amp;start=2"
+        title="FlashFish E200 em funcionamento"
+        allowfullscreen>
+      </iframe>
     </div>
 
     <div class="reviews">
       <h2>Depoimentos de clientes</h2>
-
       <div class="review">
-        ⭐⭐⭐⭐⭐ <b>Mariana S.</b><br>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <b>Mariana S.</b><br>
         “Chegou super rápido e funciona perfeitamente. Testei com notebook e ventilador, tudo ok!”
       </div>
-
       <div class="review">
-        ⭐⭐⭐⭐☆ <b>Lucas F.</b><br>
+        <div class="stars">⭐⭐⭐⭐☆</div>
+        <b>Lucas F.</b><br>
         “Boa autonomia, ideal pra acampamento. Só podia vir com bolsa de transporte.”
       </div>
-
       <div class="review">
-        ⭐⭐⭐⭐⭐ <b>André R.</b><br>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <b>André R.</b><br>
         “Produto excelente, realmente portátil e silencioso. Recomendo demais!”
       </div>
     </div>
+
+    <footer>
+      © <span id="year"></span> FlashFish Store — Pagamento seguro via PIX<br>
+      <a href="#">Política de devolução</a> •
+      <a href="#">Contato</a> •
+      <a href="#">Instagram</a>
+    </footer>
   </div>
 
-  <div class="footer">
-    © 2025 FlashFish Store — Pagamento seguro via PIX <br>
-    <a href="#">Política de devolução</a> | 
-    <a href="#">Contato</a> | 
-    <a href="#">Instagram</a>
-  </div>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

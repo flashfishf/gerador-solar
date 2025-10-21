@@ -342,9 +342,15 @@ s
       window.open(url,'_blank');
     });
 
-  </script>
-</body>
-</html><script>
+
+ // open QR using Google Chart API
+  document.getElementById('openQr').addEventListener('click', () => {
+    const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + encodeURIComponent(PIX_CODE);
+    window.open(url, '_blank');
+  });
+</script>
+
+<script>
   const thumbs = document.querySelectorAll('.polegares img');
   const mainImage = document.querySelector('.imagem-principal');
 
@@ -356,4 +362,8 @@ s
     });
   });
 </script>
+
+</body>
+</html>
+
 

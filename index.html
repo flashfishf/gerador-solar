@@ -292,62 +292,62 @@
       })
     });
 
-    // Modal flow
-    const backdrop = document.getElementById('backdrop');
-    document.getElementById('openCheckout').addEventListener('click', ()=>backdrop.style.display='flex');
-    document.getElementById('closeModal').addEventListener('click', ()=>backdrop.style.display='none');
-    document.getElementById('cancelCheckout').addEventListener('click', ()=>backdrop.style.display='none');
+d<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    const PIX_CODE = 00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE;
-    // set placeholder
-    document.getElementById('pixCode').textContent = PIX_CODE;
+// Modal flow
+const backdrop = document.getElementById('backdrop');
+document.getElementById('openCheckout').addEventListener('click', () => backdrop.style.display = 'flex');
+document.getElementById('closeModal').addEventListener('click', () => backdrop.style.display = 'none');
+document.getElementById('cancelCheckout').addEventListener('click', () => backdrop.style.display = 'none');
 
-    document.getElementById('submitCheckout').addEventListener('click', ()=>{
-      const name = document.getElementById('buyerName').value.trim();
-      const phone = document.getElementById('buyerPhone').value.trim();
-      const addr = document.getElementById('buyerAddress').value.trim();
-      const cep = document.getElementById('buyerCep').value.trim();
-      if(!name||!phone||!addr||!cep){alert('Por favor, preencha todos os campos de entrega.');return}
-      // Normally here you'd send order to server or save it. We'll show PIX section.
-      document.getElementById('checkoutForm').style.display='none';
-      document.getElementById('paymentSection').style.display='block';
-      // Optionally store order in localStorage
-      const order = {product:'FlashFish E200',price:420,name,phone,addr,cep,ts:new Date().toISOString()};
-      localStorage.setItem('lastOrder', JSON.stringify(order));
-    });
+const PIX_CODE = "00020126330014br.gov.bcb.pix01110697161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CAC320270434B5063046BEE";
+document.getElementById('pixCode').textContent = PIX_CODE;
 
-    // copy
-    document.getElementById('copyPix').addEventListener('click', ()=>{
-      navigator.clipboard.writeText(PIX_CODE).then(()=>{
-        alert('Código PIX copiado para a área de transferência. Abra seu app de banco e cole para pagar.');
-      }).catch(()=>{alert('Não foi possível copiar automaticamente. Selecione e copie o código manualmente.');});
-    });
-
-    // open QR using Google Chart API
-    document.getElementById('openQr').addEventListener('click', ()=>{
-      const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='+encodeURIComponent(PIX_CODE);
-      window.open(url,'_blank');
-    });
-
-
- // open QR using Google Chart API
-  document.getElementById('openQr').addEventListener('click', () => {
-    const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + encodeURIComponent(PIX_CODE);
-    window.open(url, '_blank');
+// Thumbs
+document.querySelectorAll('.polegares img').forEach(img => {
+  img.addEventListener('click', e => {
+    document.querySelectorAll('.polegares img').forEach(t => t.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    document.querySelector('.imagem-principal').src = e.currentTarget.dataset.src;
   });
-</script>
+});
 
-<script>
-  const thumbs = document.querySelectorAll('.polegares img');
-  const mainImage = document.querySelector('.imagem-principal');
+// Envio do formulário
+document.getElementById('submitCheckout').addEventListener('click', () => {
+  const name = document.getElementById('buyerName').value.trim();
+  const phone = document.getElementById('buyerPhone').value.trim();
+  const addr = document.getElementById('buyerAddress').value.trim();
+  const cep = document.getElementById('buyerCep').value.trim();
+  
+  if (!name || !phone || !addr || !cep) {
+    alert('Por favor, preencha todos os campos de entrega.');
+    return;
+  }
 
-  thumbs.forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      thumbs.forEach(t => t.classList.remove('ativo'));
-      thumb.classList.add('ativo');
-      mainImage.src = thumb.dataset.src;
-    });
+  document.getElementById('checkoutForm').style.display = 'none';
+  document.getElementById('paymentSection').style.display = 'block';
+
+  const order = {
+    product: 'FlashFish E200',
+    price: 420,
+    name,
+    phone,
+    addr,
+    cep,
+    ts: new Date().toISOString()
+  };
+  localStorage.setItem('lastOrder', JSON.stringify(order));
+});
+
+// Copiar código PIX
+document.getElementById('copyPix').addEventListener('click', () => {
+  navigator.clipboard.writeText(PIX_CODE).then(() => {
+    alert('Código PIX copiado para a área de transferência.');
+  }).catch(() => {
+    alert('Não foi possível copiar automaticamente.');
   });
+});
 </script>
 
 </body>

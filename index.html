@@ -348,7 +348,65 @@ document.getElementById('copyPix').addEventListener('click', () => {
     alert('Não foi possível copiar automaticamente.');
   });
 });
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Modal
+const backdrop = document.getElementById('backdrop');
+const checkoutForm = document.getElementById('checkoutForm');
+const paymentSection = document.getElementById('paymentSection');
+
+document.getElementById('openCheckout').addEventListener('click', () => {
+  backdrop.style.display = 'flex';
+  checkoutForm.style.display = 'block';
+  paymentSection.style.display = 'none';
+});
+
+document.getElementById('closeModal').addEventListener('click', () => backdrop.style.display = 'none');
+document.getElementById('cancelCheckout').addEventListener('click', () => backdrop.style.display = 'none');
+
+// Código PIX fixo
+const PIX_CODE = "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
+document.getElementById('pixCode').textContent = PIX_CODE;
+
+// Troca de imagens (mantém seu sistema atual)
+document.querySelectorAll('.polegares img').forEach(img => {
+  img.addEventListener('click', e => {
+    document.querySelectorAll('.polegares img').forEach(t => t.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    document.querySelector('.imagem-principal').src = e.currentTarget.dataset.src;
+  });
+});
+
+// Formulário → exibe pagamento PIX
+document.getElementById('submitCheckout').addEventListener('click', () => {
+  const name = document.getElementById('buyerName').value.trim();
+  const phone = document.getElementById('buyerPhone').value.trim();
+  const addr = document.getElementById('buyerAddress').value.trim();
+  const cep = document.getElementById('buyerCep').value.trim();
+
+  if (!name || !phone || !addr || !cep) {
+    alert('Por favor, preencha todos os campos de entrega.');
+    return;
+  }
+
+  checkoutForm.style.display = 'none';
+  paymentSection.style.display = 'block';
+
+  // salva dados localmente (opcional)
+  const order = { produto: "FlashFish E200", valor: 420, name, phone, addr, cep, data: new Date().toISOString() };
+  localStorage.setItem('ultimoPedido', JSON.stringify(order));
+});
+
+// Botão copiar código PIX
+document.getElementById('copyPix').addEventListener('click', () => {
+  navigator.clipboard.writeText(PIX_CODE)
+    .then(() => alert('Código PIX copiado!'))
+    .catch(() => alert('Não foi possível copiar automaticamente.'));
+});
 </script>
+
+
 
 
 </body>

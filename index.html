@@ -272,86 +272,28 @@
       </div>
 
     </div>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Images (base64 placeholders replaced server side)
-    const imgs = {
-      i1: 'DATA_IMG_1',
-      i2: 'DATA_IMG_2',
-      i3: 'DATA_IMG_3',
-      i4: 'DATA_IMG_4'
-    };
-    // Thumb click
-    document.querySelectorAll('#thumbs img').forEach(img=>{
-      img.addEventListener('click', e=>{
-        document.querySelectorAll('#thumbs img').forEach(t=>t.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        document.getElementById('mainImg').src = e.currentTarget.dataset.src;
-      })
-    });
-
-<script>
+  </div> 
+ <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Modal flow
-const backdrop = document.getElementById('backdrop');
-document.getElementById('openCheckout').addEventListener('click', () => backdrop.style.display = 'flex');
-document.getElementById('closeModal').addEventListener('click', () => backdrop.style.display = 'none');
-document.getElementById('cancelCheckout').addEventListener('click', () => backdrop.style.display = 'none');
+// Images (base64 placeholders replaced server side)
+const imgs = {
+  i1: 'DATA_IMG_1',
+  i2: 'DATA_IMG_2',
+  i3: 'DATA_IMG_3',
+  i4: 'DATA_IMG_4'
+};
 
-const PIX_CODE = "00020126330014br.gov.bcb.pix01110697161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CAC320270434B5063046BEE";
-document.getElementById('pixCode').textContent = PIX_CODE;
-
-// Thumbs
-document.querySelectorAll('.polegares img').forEach(img => {
+// Thumb click
+document.querySelectorAll('#thumbs img').forEach(img => {
   img.addEventListener('click', e => {
-    document.querySelectorAll('.polegares img').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('#thumbs img').forEach(t => t.classList.remove('active'));
     e.currentTarget.classList.add('active');
-    document.querySelector('.imagem-principal').src = e.currentTarget.dataset.src;
+    document.getElementById('mainImg').src = e.currentTarget.dataset.src;
   });
 });
 
-// Envio do formulário
-document.getElementById('submitCheckout').addEventListener('click', () => {
-  const name = document.getElementById('buyerName').value.trim();
-  const phone = document.getElementById('buyerPhone').value.trim();
-  const addr = document.getElementById('buyerAddress').value.trim();
-  const cep = document.getElementById('buyerCep').value.trim();
-  
-  if (!name || !phone || !addr || !cep) {
-    alert('Por favor, preencha todos os campos de entrega.');
-    return;
-  }
-
-  document.getElementById('checkoutForm').style.display = 'none';
-  document.getElementById('paymentSection').style.display = 'block';
-
-  const order = {
-    product: 'FlashFish E200',
-    price: 420,
-    name,
-    phone,
-    addr,
-    cep,
-    ts: new Date().toISOString()
-  };
-  localStorage.setItem('lastOrder', JSON.stringify(order));
-});
-
-// Copiar código PIX
-document.getElementById('copyPix').addEventListener('click', () => {
-  navigator.clipboard.writeText(PIX_CODE).then(() => {
-    alert('Código PIX copiado para a área de transferência.');
-  }).catch(() => {
-    alert('Não foi possível copiar automaticamente.');
-  });
-});
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Modal
+// --- Modal ---
 const backdrop = document.getElementById('backdrop');
 const checkoutForm = document.getElementById('checkoutForm');
 const paymentSection = document.getElementById('paymentSection');
@@ -365,49 +307,8 @@ document.getElementById('openCheckout').addEventListener('click', () => {
 document.getElementById('closeModal').addEventListener('click', () => backdrop.style.display = 'none');
 document.getElementById('cancelCheckout').addEventListener('click', () => backdrop.style.display = 'none');
 
-// Código PIX fixo
+// --- PIX CODE ---
 const PIX_CODE = "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
 document.getElementById('pixCode').textContent = PIX_CODE;
-
-// Troca de imagens (mantém seu sistema atual)
-document.querySelectorAll('.polegares img').forEach(img => {
-  img.addEventListener('click', e => {
-    document.querySelectorAll('.polegares img').forEach(t => t.classList.remove('active'));
-    e.currentTarget.classList.add('active');
-    document.querySelector('.imagem-principal').src = e.currentTarget.dataset.src;
-  });
-});
-
-// Formulário → exibe pagamento PIX
-document.getElementById('submitCheckout').addEventListener('click', () => {
-  const name = document.getElementById('buyerName').value.trim();
-  const phone = document.getElementById('buyerPhone').value.trim();
-  const addr = document.getElementById('buyerAddress').value.trim();
-  const cep = document.getElementById('buyerCep').value.trim();
-
-  if (!name || !phone || !addr || !cep) {
-    alert('Por favor, preencha todos os campos de entrega.');
-    return;
-  }
-
-  checkoutForm.style.display = 'none';
-  paymentSection.style.display = 'block';
-
-  // salva dados localmente (opcional)
-  const order = { produto: "FlashFish E200", valor: 420, name, phone, addr, cep, data: new Date().toISOString() };
-  localStorage.setItem('ultimoPedido', JSON.stringify(order));
-});
-
-// Botão copiar código PIX
-document.getElementById('copyPix').addEventListener('click', () => {
-  navigator.clipboard.writeText(PIX_CODE)
-    .then(() => alert('Código PIX copiado!'))
-    .catch(() => alert('Não foi possível copiar automaticamente.'));
-});
 </script>
 
-
-
-
-</body>
-</html>

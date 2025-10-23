@@ -307,8 +307,33 @@ document.getElementById('openCheckout').addEventListener('click', () => {
 document.getElementById('closeModal').addEventListener('click', () => backdrop.style.display = 'none');
 document.getElementById('cancelCheckout').addEventListener('click', () => backdrop.style.display = 'none');
 
-// --- PIX CODE ---
+// --- CÓDIGO PIX FIXO ---
 const PIX_CODE = "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
-document.getElementById('pixCode').textContent = PIX_CODE;
-</script>
+
+// --- BOTÃO "GERAR PAGAMENTO (PIX)" ---
+document.getElementById('submitCheckout').addEventListener('click', () => {
+  // Pega os campos do formulário (usando os IDs exatos do seu HTML)
+  const nome = document.getElementById('buyerName').value.trim();
+  const telefone = document.getElementById('buyerPhone').value.trim();
+  const endereco = document.getElementById('buyerAddress').value.trim();
+  const cep = document.getElementById('buyerCep').value.trim();
+
+  // Verifica se tudo foi preenchido
+  if (!nome || !telefone || !endereco || !cep) {
+    alert('Por favor, preencha todos os dados antes de gerar o pagamento.');
+    return;
+  }
+
+  // Esconde o formulário e mostra a seção do PIX
+  document.getElementById('checkoutForm').style.display = 'none';
+  document.getElementById('paymentSection').style.display = 'block';
+
+  // Mostra o código PIX
+  document.getElementById('pixCode').textContent = PIX_CODE;
+
+  // Copia automaticamente o código PIX
+  navigator.clipboard.writeText(PIX_CODE)
+    .then(() => alert('✅ Código PIX copiado! Cole no app do seu banco para pagar.'));
+});
+
 

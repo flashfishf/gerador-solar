@@ -359,25 +359,37 @@ input {
 
 </script>
 
- <script>
+
 <script>
 // --- CÓDIGO PIX FIXO ---
 const PIX_CODE = "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
 
-// --- FUNÇÃO DO BOTÃO GERAR PAGAMENTO ---
-document.addEventListener("DOMContentLoaded", () => {
-  const gerarBtn = document.querySelector("#gerarPix");
+// Detecta cliques em qualquer botão que tenha o id gerarPix
+document.addEventListener("click", async (e) => {
+  if (e.target && e.target.id === "gerarPix") {
+    try {
+      // Tenta copiar usando API moderna
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(PIX_CODE);
+      } else {
+        // Fallback para navegadores antigos
+        const tempInput = document.createElement("textarea");
+        tempInput.value = PIX_CODE;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      }
 
-  if (gerarBtn) {
-    gerarBtn.addEventListener("click", () => {
-      // Copia o código PIX
-      navigator.clipboard.writeText(PIX_CODE)
-        .then(() => {
-          // Mostra mensagem de sucesso
-          alert("✅ Código PIX copiado com sucesso!\nCole no app do seu banco para realizar o pagamento.");
-        })
-        .catch(() => {
-          alert("❌ Não foi possível copiar o código PIX. Copie manualmente:\n" + PIX_CODE);
+      alert("✅ Código PIX copiado com sucesso!\nCole no app do seu banco para realizar o pagamento.");
+    } catch (err) {
+      console.error("Erro ao copiar PIX:", err);
+      alert("❌ Não foi possível copiar automaticamente. Copie manualmente:\n" + PIX_CODE);
+    }
+  }
+});
+</script>
+
         });
     });
   }

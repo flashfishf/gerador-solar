@@ -279,5 +279,28 @@
       </div>
 
     </div>
-  </div> 
+  </div> <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const openBtn = document.getElementById("openCheckout");
+  const backdrop = document.getElementById("backdrop");
+  const closeBtn = document.getElementById("closeModal");
+  const cancelBtn = document.getElementById("cancelCheckout");
+
+  // abrir o modal
+  openBtn.addEventListener("click", () => {
+    backdrop.style.display = "flex";
+  });
+
+  // fechar o modal
+  function closeModal() {
+    backdrop.style.display = "none";
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+  cancelBtn.addEventListener("click", closeModal);
+});
+</script>
+
+</script>
+
  <script>

@@ -4,117 +4,108 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FlashFish E200 — Gerador Solar Portátil 200W</title>
-  
+   <style>
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* proporção 16:9 */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000; /* fundo preto */
+  border-radius: 12px; /* bordas suaves */
+  margin: 30px auto; /* centraliza e dá espaço */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35); /* sombra moderna */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* animação suave */
+}
+
+.video-container:hover {
+  transform: scale(1.02); /* efeito de leve aumento ao passar o mouse */
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
+}
+
+.imagem-principal {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.polegares img {
+  width: 100px;
+  height: auto;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.polegares img:hover {
+  transform: scale(1.05);
+}
+</style>
+
   <meta name="description" content="FlashFish E200 — Gerador Elétrico Portátil 200W. Compra rápida com PIX." />
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --bg:#0b0f14;
-      --card:#0f1620;
-      --muted:#9aa6b2;
-      --accent:#ff7a18;
-      --accent-2:#60a5fa;
-      --glass:rgba(255,255,255,0.03);
-      --max-w:980px;
-      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
-      color-scheme:dark;
-    }
+    :root{--bg:#0b0f14;--card:#0f1620;--muted:#9aa6b2;--accent:#ff7a18;--accent-2:#60a5fa;--glass:rgba(255,255,255,0.03);--max-w:980px;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color-scheme:dark}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#06101a 80%);color:#e9f2f8;-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--max-w);margin:28px auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .mark{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb572);display:flex;align-items:center;justify-content:center;font-weight:800;color:#081018}
+    h1{margin:8px 0;font-size:28px}
+    p.lead{color:var(--muted);margin:0}
 
-    * { box-sizing:border-box }
-    html,body { height:100% }
-    body {
-      margin:0;
-      background:linear-gradient(180deg,var(--bg),#06101a 80%);
-      color:#e9f2f8;
-      -webkit-font-smoothing:antialiased;
-    }
+    .product{display:grid;grid-template-columns:460px 1fr;gap:28px;margin-top:22px}
+    .gallery{background:var(--card);padding:18px;border-radius:14px}
+    .gallery-main{width:100%;height:340px;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#071019}
+    .gallery-main img{max-width:100%;max-height:100%;object-fit:contain}
+    .thumbs{display:flex;gap:10px;margin-top:12px}
+    .thumbs img{width:76px;height:56px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0.95;border:2px solid transparent}
+    .thumbs img.active{border-color:var(--accent);opacity:1}
 
-    .container { max-width:var(--max-w);margin:28px auto;padding:28px }
-    header { display:flex;align-items:center;justify-content:space-between;gap:12px }
-    .logo { display:flex;align-items:center;gap:12px }
-    .mark { width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb572);display:flex;align-items:center;justify-content:center;font-weight:800;color:#081018 }
-    h1 { margin:8px 0;font-size:28px }
-    p.lead { color:var(--muted);margin:0 }
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px}
+    .price{font-size:28px;font-weight:800;color:var(--accent);}
+    .specs{color:var(--muted);margin-top:8px}
+    .btn{cursor:pointer;border:0;padding:12px 18px;border-radius:10px;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffb572);color:#081018}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
 
-    .product { display:grid;grid-template-columns:460px 1fr;gap:28px;margin-top:22px }
-    .gallery { background:var(--card);padding:18px;border-radius:14px }
-    .gallery-main { width:100%;height:340px;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#071019 }
-    .gallery-main img { max-width:100%;max-height:100%;object-fit:contain }
-    .thumbs { display:flex;gap:10px;margin-top:12px }
-    .thumbs img { width:76px;height:56px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0.95;border:2px solid transparent }
-    .thumbs img.active { border-color:var(--accent);opacity:1 }
+    .features{display:flex;gap:12px;margin-top:16px}
+    .feature{flex:1;padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);text-align:center}
 
-    .card {
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:20px;
-      border-radius:12px;
-    }
-    .price { font-size:28px;font-weight:800;color:var(--accent); }
-    .specs { color:var(--muted);margin-top:8px }
-    .btn { cursor:pointer;border:0;padding:12px 18px;border-radius:10px;font-weight:700 }
-    .btn.primary { background:linear-gradient(90deg,var(--accent),#ffb572);color:#081018 }
-    .btn.ghost { background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted) }
+    footer{margin-top:28px;color:var(--muted);font-size:13px}
 
-    .features { display:flex;gap:12px;margin-top:16px }
-    .feature { flex:1;padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);text-align:center }
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,12,0.6);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal{width:720px;max-width:94%;background:linear-gradient(180deg,#071018,#07131a);border-radius:12px;padding:18px;box-shadow:0 12px 40px rgba(2,6,23,0.8);}
+    .modal h3{margin:0 0 8px}
+    .form-row{display:flex;gap:10px}
+    .form-row .col{flex:1}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    label{font-size:13px;color:var(--muted)}
 
-    footer { margin-top:28px;color:var(--muted);font-size:13px }
+    .pay-section{display:none;margin-top:12px}
+    .pix-code{font-family:monospace;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;word-break:break-all}
 
-    /* Vídeo */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      max-width: 100%;
-      background: #000;
-      border-radius: 12px;
-      margin: 30px auto;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .video-container:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      border-radius: 12px;
-    }
-
-    /* Modal */
-    .modal-backdrop {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(6px);
-      display: none; /* começa escondido */
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal-card {
-      background: linear-gradient(180deg, #071018, #07131a);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 12px 40px rgba(2,6,23,0.8);
-      width: 700px;
-      max-width: 90%;
-    }
-
-    .muted { color: var(--muted); }
+    @media (max-width:880px){.product{grid-template-columns:1fr;}.gallery-main{height:300px}}
   </style>
 </head>
-
 <body>
   <div class="container">
     <header>
@@ -125,109 +116,216 @@
           <div class="muted">Produto oficial • Entrega rápida</div>
         </div>
       </div>
+
       <div style="text-align:right">
         <div style="font-weight:700">FlashFish E200</div>
         <div class="muted">Gerador Solar Portátil 200W</div>
       </div>
     </header>
 
-    <main>
-      <div class="video-container">
-        <iframe 
-          src="https://www.youtube.com/embed/muOOXJUXmqk?si=2wfKniw_xOFKiJK9&amp;start=2"
-          title="FlashFish E200 em funcionamento"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="card">
-        <h1>FlashFish E200 — Gerador Elétrico Portátil</h1>
-        <p class="lead">Potência nominal <strong>200W</strong> • Capacidade <strong>151Wh</strong></p>
-
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px">
-          <div>
-            <div class="price">R$ 420,00</div>
-            <div class="specs">Pagamento via PIX — envio em até 3 dias úteis</div>
-          </div>
-          <div>
-            <button class="btn primary" id="openCheckout">Finalizar Compra</button>
-          </div>
-        </div>
-      </div>
-
-      <footer>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-          <div class="muted">© <span id="year"></span> FlashFish Store — Pagamento seguro via PIX</div>
-          <div class="muted">Envio para todo o Brasil</div>
-        </div>
-      </footer>
-    </main>
+    <main class="produto">
+  <div class="cartao-de-galeria">
+    <div class="galeria-principal">
+      <img src="DADOS_IMG_1.png" class="imagem-principal" alt="FlashFish E200">
+    </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="backdrop">
-    <div class="modal-card">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-        <h3>Finalizar Compra</h3>
-        <button class="btn ghost" id="closeModal">Fechar</button>
+  <div class="polegares">
+    <img src="DADOS_IMG_2.png" data-src="DADOS_IMG_2.png" alt="Imagem 2">
+    <img src="DADOS_IMG_3.png" data-src="DADOS_IMG_3.png" alt="Imagem 3">
+    <img src="DADOS_IMG_4.png" data-src="DADOS_IMG_4.png" alt="Imagem 4">
+  </div>
+     
+<div class="video-container">
+  <iframe 
+    width="560" height="315"
+    src="https://www.youtube.com/embed/muOOXJUXmqk?si=2wfKniw_xOFKiJK9&amp;start=2"
+    title="FlashFish E200 em funcionamento"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+
+</main>
+
+
+
+</div>
+
+        </div>
       </div>
 
-      <p class="muted" style="margin-top:12px">
-        Preencha os dados de entrega para gerar o pagamento via PIX.
-      </p>
+      <div>
+        <div class="card">
+          <h1>FlashFish E200 — Gerador Elétrico Portátil</h1>
+          <p class="lead">Potência nominal <strong>200W</strong> • Capacidade <strong>151Wh</strong></p>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px">
+            <div>
+              <div class="price">R$ 420,00</div>
+              <div class="specs">Pagamento via PIX — envio em até 3 dias úteis</div>
+            </div>
+            <div style="text-align:right">
+              <button class="btn primary" id="openCheckout">Finalizar Compra</button>
+            </div>
+          </div>
+
+          <div class="features">
+            <div class="feature">
+              <div style="font-weight:800">Compacto</div>
+              <div class="muted">Fácil de transportar</div>
+            </div>
+            <div class="feature">
+              <div style="font-weight:800">3 maneiras de carregar</div>
+              <div class="muted">Rede, painel solar, carro</div>
+            </div>
+            <div class="feature">
+              <div style="font-weight:800">Garantia</div>
+              <div class="muted">12 meses</div>
+            </div>
+          </div>
+
+          <section style="margin-top:16px">
+            <h3>Descrição</h3>
+            <p class="muted">Unidade única: FlashFish E200, gerador portátil com saídas USB, DC e saída CA 110V. Ideal para viagens, emergência e uso doméstico leve.</p>
+          </section>
+        </div>
+
+        <div style="margin-top:14px" class="card">
+          <h3>Detalhes do pedido</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div>
+              <div style="font-weight:800">FlashFish E200</div>
+              <div class="muted">Quantidade: 1</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:800">R$ 420,00</div>
+              <div class="muted">Total</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="muted">© <span id="year"></span> FlashFish Store — Pagamento seguro via PIX</div>
+        <div class="muted">Envio para todo o Brasil</div>
+      </div>
+    </footer>
+  </div>
+
+
+<!-- Modal / Checkout -->
+<div class="modal-backdrop" id="backdrop">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <h3>Finalizar Compra</h3>
+      <button class="btn ghost" id="closeModal">Fechar</button>
+    </div>
+
+    <div id="checkoutForm" style="margin-top:12px">
+      <p class="muted">Preencha os dados de entrega para gerar o pagamento via PIX.</p>
 
       <div style="margin-top:12px">
         <div class="form-row">
           <div class="col">
             <label for="buyerName">Nome completo</label>
-            <input type="text" id="buyerName" placeholder="Seu nome completo">
+            <input type="text" id="buyerName" required placeholder="Seu nome completo">
           </div>
+
           <div class="col">
             <label for="buyerPhone">Telefone (WhatsApp)</label>
-            <input type="tel" id="buyerPhone" placeholder="(11) 9xxxx-xxxx">
+            <input type="tel" id="buyerPhone" required placeholder="(11) 9xxxx-xxxx">
           </div>
         </div>
       </div>
 
       <div style="margin-top:10px">
-        <label for="buyerAddress">Endereço</label>
-        <input type="text" id="buyerAddress" placeholder="Rua, número, complemento">
+        <label for="buyerAddress">Endereço (Rua, número, complemento)</label>
+        <input type="text" id="buyerAddress" required placeholder="Av. Exemplo, 123, Apto 45">
       </div>
 
       <div style="margin-top:10px">
         <label for="buyerCep">CEP</label>
-        <input type="text" id="buyerCep" placeholder="00000-000">
+        <input type="text" id="buyerCep" required placeholder="00000-000">
       </div>
 
-      <div style="margin-top:16px;display:flex;justify-content:flex-end;gap:10px">
-        <button class="btn ghost" id="cancelCheckout">Cancelar</button>
-        <button class="btn primary" id="submitCheckout">Gerar Pagamento (PIX)</button>
+      <div style="margin-top:16px;text-align:right">
+
+
+          <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:10px">
+            <button class="btn ghost" id="cancelCheckout">Cancelar</button>
+            <button class="btn primary" id="submitCheckout">Gerar Pagamento (PIX)</button>
+          </div>
+        </div>
       </div>
+
+      <div id="paymentSection" class="pay-section" style="margin-top:14px">
+        <h4>Pagamento via PIX</h4>
+        <p class="muted">Copie o código PIX abaixo ou abra o QR Code no celular para pagar.</p>
+        <div style="margin-top:10px">
+          <div class="pix-code" id="pixCode">PIX_CODE_PLACEHOLDER</div>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">
+          <button class="btn ghost" id="copyPix">Copiar código</button>
+          <button class="btn primary" id="openQr">Abrir QR (Pagar)</button>
+        </div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">Após confirmar o pagamento, envie o comprovante para nosso WhatsApp para confirmar o envio.</div>
+      </div>
+
     </div>
-  </div>
+  </div> <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const openBtn = document.getElementById("openCheckout");
+  const backdrop = document.getElementById("backdrop");
+  const closeBtn = document.getElementById("closeModal");
+  const cancelBtn = document.getElementById("cancelCheckout");
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const openBtn = document.getElementById("openCheckout");
-      const backdrop = document.getElementById("backdrop");
-      const closeBtn = document.getElementById("closeModal");
-      const cancelBtn = document.getElementById("cancelCheckout");
+  // abrir o modal
+  openBtn.addEventListener("click", () => {
+    backdrop.style.display = "flex";
+  });
 
-      // abrir o modal
-      openBtn.addEventListener("click", () => {
-        backdrop.style.display = "flex";
-      });
+  // fechar o modal
+  function closeModal() {
+    backdrop.style.display = "none";
+  }
 
-      // fechar o modal
-      function closeModal() {
-        backdrop.style.display = "none";
-      }
+  closeBtn.addEventListener("click", closeModal);
+  cancelBtn.addEventListener("click", closeModal);
+});
+</script>
 
-      closeBtn.addEventListener("click", closeModal);
-      cancelBtn.addEventListener("click", closeModal);
-    });
-  </script>
-</body>
-</html>
+<!-- AGORA sim o CSS separado -->
+<style>
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1); /* aumenta a opacidade do fundo */
+  backdrop-filter: blur(4px); /* opcional – dá leve desfoque */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+</style>
+
+}
+
+});
+</script>
+
+</script>
+
+ <script>

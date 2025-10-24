@@ -221,7 +221,7 @@
 
 
 <!-- Modal / Checkout -->
-<div class="modal-backdrop" id="backdrop">
+<div id="backdrop" class="modal-backdrop" style="display: none;">
   <div class="modal-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
       <h3>Finalizar Compra</h3>
@@ -255,41 +255,31 @@
         <input type="text" id="buyerCep" required placeholder="00000-000">
       </div>
 
-      <div style="margin-top:16px;text-align:right">
-
-
-          <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:10px">
-            <button class="btn ghost" id="cancelCheckout">Cancelar</button>
-            <button class="btn primary" id="submitCheckout">Gerar Pagamento (PIX)</button>
-          </div>
-        </div>
+      <div style="margin-top:20px;display:flex;justify-content:space-between">
+        <button id="cancelCheckout" class="btn ghost">Cancelar</button>
+        <button id="generatePix" class="btn primary">Gerar Pagamento (PIX)</button>
       </div>
-
-      <div id="paymentSection" class="pay-section" style="margin-top:14px">
-        <h4>Pagamento via PIX</h4>
-        <p class="muted">Copie o código PIX abaixo ou abra o QR Code no celular para pagar.</p>
-        <div style="margin-top:10px">
-          <div class="pix-code" id="pixCode">PIX_CODE_PLACEHOLDER</div>
-        </div>
-        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">
-          <button class="btn ghost" id="copyPix">Copiar código</button>
-          <button class="btn primary" id="openQr">Abrir QR (Pagar)</button>
-        </div>
-        <div style="margin-top:12px;color:var(--muted);font-size:13px">Após confirmar o pagamento, envie o comprovante para nosso WhatsApp para confirmar o envio.</div>
-      </div>
-
     </div>
-  </div> <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const openBtn = document.getElementById("openCheckout");
+
+    <div style="margin-top:12px;color:var(--muted);font-size:13px;">
+      Após confirmar o pagamento, envie o comprovante para nosso WhatsApp para confirmar o envio.
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const openBtn = document.getElementById("openCheckout"); // botão “Finalizar Compra”
   const backdrop = document.getElementById("backdrop");
   const closeBtn = document.getElementById("closeModal");
   const cancelBtn = document.getElementById("cancelCheckout");
 
   // abrir o modal
-  openBtn.addEventListener("click", () => {
-    backdrop.style.display = "flex";
-  });
+  if (openBtn) {
+    openBtn.addEventListener("click", () => {
+      backdrop.style.display = "flex";
+    });
+  }
 
   // fechar o modal
   function closeModal() {
@@ -301,7 +291,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- AGORA sim o CSS separado -->
 <style>
 .modal-backdrop {
   position: fixed;
@@ -309,16 +298,58 @@ document.addEventListener("DOMContentLoaded", function() {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.1); /* aumenta a opacidade do fundo */
-  backdrop-filter: blur(4px); /* opcional – dá leve desfoque */
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s ease;
 }
+
+.modal-card {
+  background: #111;
+  color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid #555;
+  color: #ddd;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #ff8800;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn.primary:hover {
+  background: #ffaa33;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: white;
+}
+</style>
+
 </style>
 
 }

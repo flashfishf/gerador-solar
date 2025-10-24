@@ -301,6 +301,31 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<!-- AGORA sim o CSS separado -->
+<style>
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1); /* aumenta a opacidade do fundo */
+  backdrop-filter: blur(4px); /* opcional – dá leve desfoque */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+</style>
+
+}
+
+});
+</script>
+
 </script>
 
  <script>

@@ -361,30 +361,83 @@ input {
 
 
 <script>
-// --- CÓDIGO PIX FIXO ---
-const PIX_CODE = "00020126330014br.gov.bcb.pix0111096917161785204000053039865406420.005802BR5925Marcos Felipe Rodrigues S6009Sao Paulo62290525REC68F259CA2C32027043485063046BEE";
+document.addEventListener("DOMContentLoaded", () => {
+  const gerarPixBtn = document.getElementById("gerarPix");
 
-// Detecta cliques em qualquer botão que tenha o id gerarPix
-document.addEventListener("click", async (e) => {
-  if (e.target && e.target.id === "gerarPix") {
-    try {
-      // Tenta copiar usando API moderna
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(PIX_CODE);
-      } else {
-        // Fallback para navegadores antigos
-        const tempInput = document.createElement("textarea");
-        tempInput.value = PIX_CODE;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-      }
+  gerarPixBtn.addEventListener("click", () => {
+    const PIX_CODE = "00020126330014br.gov.bcb.pix011109567117852040005303986540420.005802BR5925Marcos Felipe Rodrigues6009Sao Paulo62290525REC68F259CA2C32072434850630468BEE";
 
-      alert("✅ Código PIX copiado com sucesso!\nCole no app do seu banco para realizar o pagamento.");
-    } catch (err) {
-      console.error("Erro ao copiar PIX:", err);
-      alert("❌ Não foi possível copiar automaticamente. Copie manualmente:\n" + PIX_CODE);
+    const novaPagina = `
+      <html>
+        <head>
+          <title>Pagamento via PIX</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background: #0d0d0d;
+              color: white;
+              text-align: center;
+              padding: 50px;
+            }
+            .container {
+              background: #1a1a1a;
+              border-radius: 15px;
+              padding: 30px;
+              display: inline-block;
+            }
+            textarea {
+              width: 100%;
+              height: 100px;
+              font-size: 14px;
+              margin-top: 15px;
+              border-radius: 10px;
+              padding: 10px;
+            }
+            button {
+              background: #f39c12;
+              color: white;
+              border: none;
+              padding: 10px 20px;
+              border-radius: 10px;
+              font-size: 16px;
+              cursor: pointer;
+              margin-top: 20px;
+            }
+            button:hover {
+              background: #e67e22;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <h2>💳 Seu código PIX</h2>
+            <p>Copie o código abaixo e cole no app do seu banco para realizar o pagamento:</p>
+            <textarea id="pixCode" readonly>${PIX_CODE}</textarea><br>
+            <button id="copiarPix">Copiar Código PIX</button>
+            <p style="margin-top:20px;">Após o pagamento, envie o comprovante para o nosso WhatsApp.</p>
+          </div>
+          <script>
+            document.getElementById('copiarPix').addEventListener('click', async () => {
+              try {
+                await navigator.clipboard.writeText(document.getElementById('pixCode').value);
+                alert('✅ Código PIX copiado com sucesso!');
+              } catch (err) {
+                alert('❌ Não foi possível copiar automaticamente. Copie manualmente.');
+              }
+            });
+          <\/script>
+        </body>
+      </html>
+    `;
+
+    const novaAba = window.open();
+    novaAba.document.write(novaPagina);
+    novaAba.document.close();
+  });
+});
+</script>
+
+
     }
   }
 });

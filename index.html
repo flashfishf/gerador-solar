@@ -512,13 +512,15 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     // abre a nova aba com o pagamento
-    const novaJanela = window.open('', '_blank');
-    if (!novaJanela) {
-      alert('⚠️ O navegador bloqueou a janela de pagamento. Permita pop-ups e tente novamente.');
-      return;
-    }
-    novaJanela.document.write(novaPagina);
-    novaJanela.document.close();
+const novaJanela = window.open('', '_blank');
+if (!novaJanela) {
+  alert('⚠️ O navegador bloqueou a janela de pagamento. Permita pop-ups e tente novamente.');
+  return;
+}
+
+novaJanela.document.write(novaPagina);
+novaJanela.document.close();
+
   });
 });
 </script>

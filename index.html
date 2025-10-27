@@ -362,59 +362,58 @@ input {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // tenta encontrar o botão por id's conhecidos ou pelo texto do botão
+  // tenta encontrar o botão pelo texto ou ID
   const gerarBtn =
     document.getElementById('gerarPix') ||
     document.getElementById('generatePix') ||
-    Array.from(document.querySelectorAll('button')).find(b => /gerar\s*pagamento/i.test(b.textContent));
+    Array.from(document.querySelectorAll('button')).find(b =>
+      /gerar\s*pagamento\s*pix/i.test(b.textContent)
+    );
 
   if (!gerarBtn) {
-    console.error('Botão "Gerar Pagamento (PIX)" não encontrado. Verifique id ou texto do botão.');
+    console.error('Botão "Gerar Pagamento PIX" não encontrado. Verifique id ou texto do botão.');
     return;
   }
 
-  gerarBtn.addEventListener('click', (e) => {
+  gerarBtn.addEventListener('click', e => {
     e.preventDefault();
 
     // fecha o modal se existir (opcional)
     const backdrop = document.getElementById('backdrop');
     if (backdrop) backdrop.style.display = 'none';
 
-    // dados (substitua aqui se precisar)
-    const PIX_CODE = "00020126330014br.gov.bcb.pix011109567117852040005303986540420.005802BR5925Marcos Felipe Rodrigues6009Sao Paulo62290525REC68F259CA2C32072434850630468BEE";
+    // seus dados de pagamento
+    const PIX_CODE = "00020126330014BR.GOV.BCB.PIX011109567117852040005303986540420.005802BR5925Marcos Felipe Rodrigues6009Sao Paulo6209P52040023074865802";
     const AMOUNT = "R$ 420,00";
-    const WHATSAPP_NUMBER = "5511971482248"; // +55 11 97148-2248 -> formato wa.me
+    const WHATSAPP_NUMBER = "5511971482248"; // ✅ novo número
 
-    // gera a página de pagamento
+    // cria página de pagamento
     const novaPagina = `
       <!doctype html>
       <html lang="pt-BR">
       <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Pagamento via PIX</title>
         <style>
           body { font-family: Arial, sans-serif; background:#0d0d0d; color:#fff; text-align:center; padding:40px; }
           .box { background:#161616; display:inline-block; padding:24px; border-radius:12px; max-width:520px; width:100%; }
-          h1 { margin:0 0 10px; color:#f7b36a; }
           .amount { font-size:20px; margin-bottom:12px; color:#fff; }
-          textarea { width:100%; height:110px; border-radius:10px; padding:12px; background:#0f0f0f; color:#fff; border:1px solid #222; resize:none; font-family:monospace; }
-          button { margin-top:12px; background:#ff8800; color:#000; padding:10px 18px; border-radius:10px; border:none; font-weight:700; cursor:pointer; }
-          a.whatsapp { display:inline-block; margin-top:14px; color:#25D366; text-decoration:none; font-weight:600; }
-          p.small { color:#bfc9cf; font-size:13px; margin-top:16px; }
+          textarea { width:100%; height:120px; border:none; border-radius:8px; padding:10px; font-size:14px; background:#222; color:#fff; }
+          button { margin-top:16px; padding:10px 20px; border:none; border-radius:8px; background:#25D366; color:#000; cursor:pointer; font-weight:600; }
+          .whatsapp { display:inline-block; margin-top:14px; color:#25D366; text-decoration:none; font-weight:600; }
+          p.small { font-size:13px; color:#bfbfbf; margin-top:16px; }
         </style>
       </head>
       <body>
         <div class="box">
-          <h1>💳 Pagamento via PIX</h1>
+          <h1>💸 Pagamento via PIX</h1>
           <div class="amount">Valor: <strong>${AMOUNT}</strong></div>
           <p>Código PIX (copie e cole no app do seu banco):</p>
           <textarea id="pixCode" readonly>${PIX_CODE}</textarea>
-          <div>
-            <button id="copiarPix">Copiar Código PIX</button>
-          </div>
+          <button id="copiarPix">Copiar Código PIX</button>
           <p class="small">Após o pagamento, envie o comprovante para confirmar o envio:</p>
-          <a class="whatsapp" href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank">Enviar comprovante pelo WhatsApp</a>
+          <a class="whatsapp" href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank">📲 Enviar comprovante pelo WhatsApp</a>
         </div>
 
         <script>
@@ -426,22 +425,23 @@ document.addEventListener('DOMContentLoaded', () => {
               alert('❌ Falha ao copiar automaticamente. Copie manualmente.');
             }
           });
-        <\/script>
+        </script>
       </body>
       </html>
     `;
 
-    // abre a janela no mesmo handler de clique (evita bloqueio)
+    // abre a janela com o PIX
     const novaJanela = window.open('', '_blank');
     if (!novaJanela) {
-      alert('O navegador bloqueou a janela de pagamento. Permita popups e tente novamente.');
+      alert('⚠️ O navegador bloqueou a janela de pagamento. Permita pop-ups e tente novamente.');
       return;
     }
+
     novaJanela.document.write(novaPagina);
-    novaJanela.document.close();
   });
 });
 </script>
+
 
 
 

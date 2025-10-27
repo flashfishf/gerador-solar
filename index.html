@@ -521,6 +521,32 @@ if (!novaJanela) {
 novaJanela.document.write(novaPagina);
 novaJanela.document.close();
 
+  // força execução do script interno da nova aba
+  novaJanela.onload = () => {
+    const script = novaJanela.document.createElement('script');
+    script.textContent = `
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.addEventListener('click', async () => {
+        const code = document.getElementById('pixCode').innerText;
+        try {
+          await navigator.clipboard.writeText(code);
+          copyBtn.innerText = '✅ Copiado!';
+          copyBtn.style.background = '#00dba5';
+          setTimeout(() => {
+            copyBtn.innerText = '📋 Copiar Código PIX';
+            copyBtn.style.background = '#00ffc3';
+          }, 2000);
+        } catch (err) {
+          alert('Falha ao copiar, copie manualmente.');
+        }
+      });
+    `;
+    novaJanela.document.body.appendChild(script);
+  };
+});
+});
+</script>
+
   });
 });
 </script>
